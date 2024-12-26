@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Garnett-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Garnett-Medium.woff") format("woff");
+}
+
 @layer base {
   html {
     font-size: 62.5%;
@@ -9,6 +24,11 @@
 
   body {
     font-size: 1.6rem;
-    font-family: "Karla", sans-serif;
+    font-family: "Garnett", sans-serif;
   }
+
+  strong {
+    font-weight: 500;
+  }
+
 }
