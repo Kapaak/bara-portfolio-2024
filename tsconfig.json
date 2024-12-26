@@ -9,6 +9,7 @@
       "@sections/*": ["src/sections/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
+      "@sanity/*": ["src/sanity/*"],
     }
   }
 }
