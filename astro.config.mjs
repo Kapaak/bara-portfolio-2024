@@ -11,6 +11,8 @@ dotenvConfig();
 
 // https://astro.build/config
 export default defineConfig({
+  //TODO: Remove output server and use sanity hooks instead !!
+  output: "server",
   integrations: [
     tailwind(),
     sanity({
