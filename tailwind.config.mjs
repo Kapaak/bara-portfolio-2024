@@ -48,6 +48,9 @@ export default {
           },
         ],
       },
+      borderRadius: {
+        regular: calculateRem(25),
+      },
       spacing: () => ({
         ...Array.from({ length: 96 }, (_, index) => index * 0.5)
           .filter((i) => i)

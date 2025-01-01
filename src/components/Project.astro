@@ -1,22 +1,38 @@
 ---
 import LinkIcon from "./LinkIcon.astro";
 import Tag from "./Tag.astro";
+import { Image } from "astro:assets";
+import { urlFor } from "@sanity/utils";
+import type { SanityImage } from "@sanity/types";
 
 interface Props {
   title?: string;
   detailUrl?: string;
   externalUrl?: string;
   tags?: { name: string; value: string }[];
+  image?: SanityImage;
 }
 
-const { title, detailUrl, externalUrl, tags } = Astro.props;
+const { title, detailUrl, externalUrl, tags, image } = Astro.props;
 ---
 
 <div class="flex flex-col gap-4">
   <h3 class="text-h3 text-primary">{title}</h3>
 
-  <div class="h-[17rem] bg-[#D9D9D9]">
-    <img src="" alt="" />
+  <div class="h-[17rem] bg-[#D9D9D9] lg:rounded-regular">
+    {
+      image && (
+        <Image
+          src={urlFor(image)?.url()}
+          alt="Profilová fotka lektora angličtiny Petra Walacha"
+          width={image?.asset?.metadata?.dimensions?.width}
+          height={image?.asset?.metadata?.dimensions?.height}
+          loading="lazy"
+          decoding="async"
+          class="h-full object-cover rounded-[inherit]"
+        />
+      )
+    }
   </div>
 
   <div class="flex flex-col gap-4">
@@ -42,10 +58,9 @@ const { title, detailUrl, externalUrl, tags } = Astro.props;
   {
     tags && (
       <div class="flex gap-5">
-        {tags.map((tag) => {
-          console.log(tag, "tag");
-          return <Tag>{tag.name}</Tag>;
-        })}
+        {tags.map((tag) => (
+          <Tag>{tag.name}</Tag>
+        ))}
       </div>
     )
   }

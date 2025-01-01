@@ -10,7 +10,7 @@ export async function getProjects(): Promise<SanityProject[]> {
     name,
     "value":value.current
   },
-  image,
+  image{asset->{...,metadata}},
   }`;
 
   const projects: SanityProject[] = await sanityClient.fetch(query);
