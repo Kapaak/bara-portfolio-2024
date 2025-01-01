@@ -11,6 +11,7 @@ export async function getProjects(): Promise<SanityProject[]> {
     "value":value.current
   },
   image{asset->{...,metadata}},
+  "imageAlt":image.alt,
   }`;
 
   const projects: SanityProject[] = await sanityClient.fetch(query);

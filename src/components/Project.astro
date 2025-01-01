@@ -4,6 +4,10 @@ import Tag from "./Tag.astro";
 import { Image } from "astro:assets";
 import { urlFor } from "@sanity/utils";
 import type { SanityImage } from "@sanity/types";
+import Headline from "./Headline.astro";
+
+import linkSVG from "../assets/link.svg";
+import infoSVG from "../assets/info.svg";
 
 interface Props {
   title?: string;
@@ -11,20 +15,21 @@ interface Props {
   externalUrl?: string;
   tags?: { name: string; value: string }[];
   image?: SanityImage;
+  description?: string;
+  imageAlt?: string;
 }
 
-const { title, detailUrl, externalUrl, tags, image } = Astro.props;
+const { title, detailUrl, externalUrl, tags, image, imageAlt, description } =
+  Astro.props;
 ---
 
-<div class="flex flex-col gap-4">
-  <h3 class="text-h3 text-primary">{title}</h3>
-
-  <div class="h-[17rem] bg-[#D9D9D9] lg:rounded-regular">
+<article class="flex gap-[2.4rem]">
+  <div class="hidden h-[33.6rem] bg-[#D9D9D9] rounded-regular lg:block flex-1">
     {
       image && (
         <Image
           src={urlFor(image)?.url()}
-          alt="Profilová fotka lektora angličtiny Petra Walacha"
+          alt={imageAlt ?? "Nebyl přidán žádný popisek obrázku"}
           width={image?.asset?.metadata?.dimensions?.width}
           height={image?.asset?.metadata?.dimensions?.height}
           loading="lazy"
@@ -35,33 +40,55 @@ const { title, detailUrl, externalUrl, tags, image } = Astro.props;
     }
   </div>
 
-  <div class="flex flex-col gap-4">
-    <!-- Tohle bude pri kliknuti na cely, pokud jsem na mobilu a nebude viditelny  -->
+  <div class="flex flex-col gap-4 flex-1">
+    <Headline>{title}</Headline>
+
+    <p>{description}</p>
+
+    <div class="h-[17rem] bg-[#D9D9D9] lg:hidden">
+      {
+        image && (
+          <Image
+            src={urlFor(image)?.url()}
+            alt="Profilová fotka lektora angličtiny Petra Walacha"
+            width={image?.asset?.metadata?.dimensions?.width}
+            height={image?.asset?.metadata?.dimensions?.height}
+            loading="lazy"
+            decoding="async"
+            class="h-full object-cover rounded-[inherit]"
+          />
+        )
+      }
+    </div>
+
     {
-      detailUrl && (
-        <LinkIcon iconSrc="/src/assets/info.svg" href={`/${detailUrl}`}>
-          Víc o projektu
-        </LinkIcon>
+      tags && (
+        <div class="flex gap-5">
+          {tags.map((tag) => (
+            <Tag>{tag.name}</Tag>
+          ))}
+        </div>
       )
     }
 
-    {
-      externalUrl && (
-        <LinkIcon iconSrc="/src/assets/link.svg" href={externalUrl}>
-          {" "}
-          Podívat se na stránku{" "}
-        </LinkIcon>
-      )
-    }
+    <div class="flex flex-col gap-4">
+      <!-- Tohle bude pri kliknuti na cely, pokud jsem na mobilu a nebude viditelny  -->
+      {
+        detailUrl && (
+          <LinkIcon iconSrc={infoSVG} href={`/${detailUrl}`}>
+            Víc o projektu
+          </LinkIcon>
+        )
+      }
+
+      {
+        externalUrl && (
+          <LinkIcon iconSrc={linkSVG} href={externalUrl}>
+            {" "}
+            Podívat se na stránku{" "}
+          </LinkIcon>
+        )
+      }
+    </div>
   </div>
-
-  {
-    tags && (
-      <div class="flex gap-5">
-        {tags.map((tag) => (
-          <Tag>{tag.name}</Tag>
-        ))}
-      </div>
-    )
-  }
-</div>
+</article>
