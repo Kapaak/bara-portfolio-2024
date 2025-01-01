@@ -1,5 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { Image } from "astro:assets";
 
 interface Props extends HTMLAttributes<"a"> {
   iconSrc?: string;
@@ -12,6 +13,6 @@ const { iconSrc, class: className = "", ...rest } = Astro.props;
   class={`inline-flex gap-2 underline underline-offset-4 ${className}`}
   {...rest}
 >
-  {iconSrc && <img src={iconSrc} alt="Ikona pro link" />}
+  {iconSrc && <Image inferSize src={iconSrc} alt="Ikona pro link" />}
   <slot />
 </a>
