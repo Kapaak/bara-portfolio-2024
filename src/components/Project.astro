@@ -17,14 +17,25 @@ interface Props {
   image?: SanityImage;
   description?: string;
   imageAlt?: string;
+  odd?: boolean;
 }
 
-const { title, detailUrl, externalUrl, tags, image, imageAlt, description } =
-  Astro.props;
+const {
+  title,
+  detailUrl,
+  externalUrl,
+  tags,
+  image,
+  imageAlt,
+  description,
+  odd,
+} = Astro.props;
 ---
 
 <article class="flex gap-[2.4rem]">
-  <div class="hidden h-[33.6rem] bg-[#D9D9D9] rounded-regular lg:block flex-1">
+  <div
+    class={`hidden h-[33.6rem] bg-[#D9D9D9] rounded-regular lg:block flex-1 ${odd ? "order-1" : ""}`}
+  >
     {
       image && (
         <Image
