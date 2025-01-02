@@ -1,13 +1,52 @@
 ---
-interface Props {
-  class?: string;
-}
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
-const { class: className = "" } = Astro.props;
+const button = cva(["border", "rounded-[10rem]", "transition-colors"], {
+  variants: {
+    intent: {
+      filled: ["border-primary", "bg-primary", "text-background"],
+      bordered: ["border-primary", "text-primary", "bg-background"],
+    },
+    size: {
+      small: ["text-sm", "py-1", "px-2"],
+      medium: ["py-[1.7rem]", "px-[2.2rem]"],
+    },
+    disabled: {
+      false: null,
+      true: ["opacity-50", "cursor-not-allowed"],
+    },
+  },
+  compoundVariants: [
+    {
+      intent: "filled",
+      disabled: false,
+      class: "hover:bg-background hover:text-primary",
+    },
+    {
+      intent: "bordered",
+      disabled: false,
+      class: "hover:bg-primary hover:text-background",
+    },
+  ],
+});
+
+export interface Props
+  extends Omit<HTMLAttributes<"button">, "disabled">,
+    VariantProps<typeof button> {}
+
+const {
+  class: className,
+  intent = "filled",
+  size = "medium",
+  disabled = false,
+} = Astro.props;
 ---
 
 <button
-  class={`border-2 border-primary text-primary py-[1.7rem] px-[2.2rem] rounded-[10rem] hover:bg-primary hover:text-background ${className}`}
+  class={button({ intent, size, disabled, className })}
+  disabled={disabled}
 >
   <slot />
 </button>
