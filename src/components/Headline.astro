@@ -3,9 +3,9 @@ interface Props {
   class?: string;
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = "text-primary" } = Astro.props;
 ---
 
-<h2 class={`text-h2 text-primary font-[500] pb-4 ${className}`}>
+<h2 class={`text-h2  font-[500] pb-4 ${className}`}>
   <slot />
 </h2>
