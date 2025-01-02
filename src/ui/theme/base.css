@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: "Garnett";
   font-style: normal;
@@ -27,8 +26,11 @@
     font-family: "Garnett", sans-serif;
   }
 
+  p {
+    font-weight: 400;
+  }
+
   strong {
     font-weight: 500;
   }
-
 }
