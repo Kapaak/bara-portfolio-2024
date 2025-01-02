@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets";
+
+import behanceSVG from "../../../../assets/icons/behance.svg";
+import instagramSVG from "../../../../assets/icons/instagram.svg";
+import linkedInSVG from "../../../../assets/icons/linkedin.svg";
+---
+
+<nav class="flex gap-6">
+  <a href="https://www.behance.net/braboranovkov">
+    <Image src={behanceSVG} alt="Behance icon" />
+  </a>
+  <a href="https://www.instagram.com/bara.svg/">
+    <Image src={instagramSVG} alt="Instagram icon" />
+  </a>
+  <a href="https://www.linkedin.com/in/barbora-nov%C3%A1kov%C3%A1-b4505a174/">
+    <Image src={linkedInSVG} alt="LinkedIn icon" />
+  </a>
+</nav>

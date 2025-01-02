@@ -1,5 +1,6 @@
 ---
 import Footer from "@components/Footer/Footer.astro";
+import Header from "@components/Header/Header.astro";
 import { ClientRouter } from "astro:transitions";
 
 import "@ui/theme/style-reset.css";
@@ -25,6 +26,7 @@ const fullTitle = title ? `BN Projekt | ${title}` : "Barbora Nováková";
     <ClientRouter />
   </head>
   <body class="bg-background">
+    <Header />
     <slot />
     <Footer />
   </body>
