@@ -1,13 +1,31 @@
 ---
-interface Props {
-  removeMobilePadding?: boolean;
-}
+import type { HTMLAttributes } from "astro/types";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const { removeMobilePadding } = Astro.props;
+const maxWidth = cva(["max-w-regular", "mx-auto", "lg:px-[2.4rem]"], {
+  variants: {
+    size: {
+      small: "max-w-small",
+      regular: "max-w-regular",
+    },
+    removeMobilePadding: {
+      false: "px-[2.1rem]",
+      true: "px-0",
+    },
+  },
+});
 
-const mobilePadding = removeMobilePadding ? "px-0" : "px-[2.1rem]";
+export interface Props
+  extends Omit<HTMLAttributes<"button">, "disabled">,
+    VariantProps<typeof maxWidth> {}
+
+const {
+  class: className,
+  size = "regular",
+  removeMobilePadding = false,
+} = Astro.props;
 ---
 
-<div class={`max-w-regular mx-auto lg:px-[2.4rem] ${mobilePadding}`}>
+<div class={maxWidth({ size, removeMobilePadding, className })}>
   <slot />
 </div>
