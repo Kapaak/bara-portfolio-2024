@@ -12,7 +12,8 @@ export async function getProjects(): Promise<SanityProject[]> {
   },
   image{asset->{...,metadata}},
   "imageAlt":image.alt,
-  }`;
+  orderRank,
+  }|order(orderRank)`;
 
   const projects: SanityProject[] = await sanityClient.fetch(query);
 
