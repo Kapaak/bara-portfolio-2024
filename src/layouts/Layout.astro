@@ -4,6 +4,14 @@ import { ClientRouter } from "astro:transitions";
 
 import "@ui/theme/style-reset.css";
 import "@ui/theme/base.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+
+const fullTitle = title ? `BN Projekt | ${title}` : "Barbora Nováková";
 ---
 
 <!doctype html>
@@ -13,7 +21,7 @@ import "@ui/theme/base.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Barbora Nováková</title>
+    <title>{fullTitle}</title>
     <ClientRouter />
   </head>
   <body class="bg-background">

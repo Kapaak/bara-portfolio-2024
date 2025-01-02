@@ -9,7 +9,7 @@ const { projectSlug } = Astro.params;
 const projectDetail = await getProjectDetailBySlug(projectSlug);
 ---
 
-<Layout>
+<Layout title={projectDetail?.parentProject?.name}>
   <main class="flex flex-col gap-15 lg:gap-20 mb-15 lg:mb-20">
     <HeroSection
       title={projectDetail?.parentProject?.name}
