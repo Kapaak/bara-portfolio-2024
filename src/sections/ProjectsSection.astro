@@ -5,13 +5,15 @@ import Project from "@components/Project.astro";
 import { getProjects } from "@sanity/api";
 
 const projects = await getProjects();
+const initialProjects = projects.slice(0, 3);
+const remainingProjects = projects.slice(3);
 ---
 
 <section class="py-[5rem] px-[2.1rem]">
   <MaxWidth>
     <div class="flex flex-col gap-10">
       {
-        projects?.map((project, index) => (
+        initialProjects.map((project, index) => (
           <Project
             title={project?.name}
             tags={project?.tags}
@@ -24,7 +26,48 @@ const projects = await getProjects();
         ))
       }
 
-      {projects?.length > 3 && <Button> Zobrazit další projekty </Button>}
-    </div></MaxWidth
-  >
+      <div id="remaining-projects" class="hidden">
+        {
+          remainingProjects.map((project, index) => (
+            <Project
+              title={project?.name}
+              tags={project?.tags}
+              image={project?.image}
+              imageAlt={project?.imageAlt}
+              detailUrl={project?.slug}
+              description={project?.description}
+              odd={(index + initialProjects.length) % 2 === 0}
+            />
+          ))
+        }
+      </div>
+
+      {
+        projects?.length > 3 && (
+          <Button class="more-projects-button self-center">
+            Zobrazit další projekty
+          </Button>
+        )
+      }
+    </div>
+  </MaxWidth>
 </section>
+
+<script is:inline>
+  const toggleButton = document.querySelector(".more-projects-button");
+
+  function toggleProjects(event) {
+    const remainingProjects = document.getElementById("remaining-projects");
+    const button = event.target;
+
+    if (remainingProjects.classList.contains("hidden")) {
+      remainingProjects.classList.remove("hidden");
+      button.textContent = "Zobrazit méně projektů";
+    } else {
+      remainingProjects.classList.add("hidden");
+      button.textContent = "Zobrazit další projekty";
+    }
+  }
+
+  toggleButton.addEventListener("click", toggleProjects);
+</script>
