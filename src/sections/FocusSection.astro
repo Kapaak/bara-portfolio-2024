@@ -1,18 +1,21 @@
 ---
+import MaxWidth from "@components/MaxWidth.astro";
 import PaperList from "@components/PaperList.astro";
 import PaperNote from "@components/PaperNote.astro";
 ---
 
 <div class="sm:px-[2.1rem] md:px-[4.2rem]">
-  <div class="sm:hidden">
-    <PaperList />
-  </div>
+  <MaxWidth>
+    <div class="sm:hidden">
+      <PaperList />
+    </div>
 
-  <div
-    class="hidden sm:flex sm:max-w-[55rem] mx-auto flex-col gap-6 lg:flex-row lg:max-w-full"
-  >
-    <PaperNote />
-    <PaperNote />
-    <PaperNote />
-  </div>
+    <div
+      class="hidden sm:flex sm:max-w-[55rem] mx-auto flex-col gap-6 lg:flex-row lg:max-w-full"
+    >
+      <PaperNote />
+      <PaperNote />
+      <PaperNote />
+    </div>
+  </MaxWidth>
 </div>

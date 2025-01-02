@@ -63,7 +63,7 @@ export default {
         negative: "-1",
       },
       maxWidth: {
-        regular: "120rem",
+        regular: "132rem",
       },
     },
   },

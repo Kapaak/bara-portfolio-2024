@@ -1,0 +1,13 @@
+---
+interface Props {
+  removeMobilePadding?: boolean;
+}
+
+const { removeMobilePadding } = Astro.props;
+
+const mobilePadding = removeMobilePadding ? "sm:px-0" : "sm:px-[2.1rem]";
+---
+
+<div class={`max-w-regular mx-auto lg:px-[2.4rem] ${mobilePadding}`}>
+  <slot />
+</div>

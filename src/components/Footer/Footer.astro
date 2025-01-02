@@ -4,26 +4,29 @@ import { Image } from "astro:assets";
 import envelopeSVG from "../../assets/envelope-rotated.svg";
 import ContactInformation from "./parts/ContactInformation.astro";
 import Copyright from "./parts/Copyright.astro";
+import MaxWidth from "@components/MaxWidth.astro";
 ---
 
-<footer class="max-w-regular mx-auto mb-[6.2rem]">
-  <div
-    class="bg-primary pt-[5rem] pb-[1rem] px-[2.1rem] text-white lg:rounded-regular lg:h-[38rem] lg:pt-[1rem] flex flex-col"
-  >
+<footer class="mb-[6.2rem]">
+  <MaxWidth removeMobilePadding>
     <div
-      class="flex flex-col lg:items-center justify-center flex-1 lg:gap-[7rem]"
+      class="bg-primary pt-[5rem] pb-[1rem] px-[2.1rem] text-white lg:rounded-regular lg:h-[38rem] lg:pt-[1rem] flex flex-col"
     >
-      <div class="relative">
-        <Headline class="text-inherit">Napiš mi!</Headline>
-        <Image
-          class="absolute bottom-[-4rem] right-0 lg:bottom-0 lg:right-[-10.6rem]"
-          src={envelopeSVG}
-          alt="Ikona obálky"
-        />
-      </div>
+      <div
+        class="flex flex-col lg:items-center justify-center flex-1 lg:gap-[7rem]"
+      >
+        <div class="relative">
+          <Headline class="text-white">Napiš mi!</Headline>
+          <Image
+            class="absolute bottom-[-4rem] right-0 lg:bottom-0 lg:right-[-10.6rem]"
+            src={envelopeSVG}
+            alt="Ikona obálky"
+          />
+        </div>
 
-      <ContactInformation />
+        <ContactInformation />
+      </div>
+      <Copyright />
     </div>
-    <Copyright />
-  </div>
+  </MaxWidth>
 </footer>
