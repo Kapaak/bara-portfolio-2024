@@ -1,25 +1,26 @@
 ---
-import Headline from "@components/Headline.astro";
-import Tag from "@components/Tag.astro";
 import Layout from "@layouts/Layout.astro";
+import { getProjectDetailBySlug } from "@sanity/api";
+import { urlFor } from "@sanity/utils";
+import HeroSection from "@sections/project-detail/HeroSection.astro";
+
+const { projectSlug } = Astro.params;
+
+const projectDetail = await getProjectDetailBySlug(projectSlug);
 ---
 
 <Layout>
   <main class="flex flex-col gap-15 lg:gap-20 mb-15 lg:mb-20">
-    <Headline>Nadpis Projektu</Headline>
-    <div>
-      TODO: OBRAZEK
-      <img />
-    </div>
-    <div class="flex justify-between items-center">
-      <Tag>Whatever</Tag>
+    <HeroSection
+      title={projectDetail?.parentProject?.name}
+      tags={projectDetail?.parentProject?.tags}
+      image={urlFor(projectDetail?.parentProject?.image)?.url()}
+      imageAlt={projectDetail?.parentProject?.imageAlt}
+      year={projectDetail?.parentProject?.year}
+    />
 
-      <p>2024</p>
-    </div>
     <p>
-      “Plavecká škola Kometa. Zvýšili jsme návštěvnost. Je to teď lepší, začali
-      jsme na malém projektu, budeme dělat víc a víc. Lepší přehlednost pro
-      rodiče”
+      {projectDetail?.parentProject?.description}
     </p>
 
     <p>TODO: Ikony v cem to bylo vytvoreno</p>

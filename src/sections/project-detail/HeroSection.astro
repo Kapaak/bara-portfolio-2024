@@ -1,0 +1,48 @@
+---
+import Headline from "@components/Headline.astro";
+import MaxWidth from "@components/MaxWidth.astro";
+import Tag from "@components/Tag.astro";
+
+interface Props {
+  title?: string;
+  tags?: { name: string; value: string }[];
+  image?: string;
+  imageAlt?: string;
+  year?: number;
+}
+
+const { title, tags = [], image, imageAlt, year } = Astro.props;
+---
+
+<section>
+  <MaxWidth>
+    <div class="flex flex-col gap-3">
+      <Headline>
+        {title}
+      </Headline>
+      <div class="h-[45.4rem] relative">
+        <img
+          src={image}
+          alt={imageAlt}
+          class="object-cover max-h-full h-full w-full"
+        />
+      </div>
+
+      <div class="flex items-center justify-between">
+        {
+          tags.length > 0 && (
+            <ul class="flex gap-2">
+              {tags.map((tag) => (
+                <li>
+                  <Tag>{tag?.name}</Tag>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+
+        <span>{year}</span>
+      </div>
+    </div>
+  </MaxWidth>
+</section>
