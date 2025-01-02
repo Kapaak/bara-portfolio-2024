@@ -4,8 +4,8 @@ import PaperList from "@components/PaperList.astro";
 import PaperNote from "@components/PaperNote.astro";
 ---
 
-<div class="sm:px-[2.1rem] md:px-[4.2rem]">
-  <MaxWidth>
+<section>
+  <MaxWidth removeMobilePadding>
     <div class="sm:hidden">
       <PaperList />
     </div>
@@ -18,4 +18,4 @@ import PaperNote from "@components/PaperNote.astro";
       <PaperNote />
     </div>
   </MaxWidth>
-</div>
+</section>
