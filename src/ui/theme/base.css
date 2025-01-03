@@ -6,11 +6,13 @@
   html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    background-image: url("/pattern.png");
   }
 
   body {
     font-size: 1.6rem;
     font-family: "Garnett", sans-serif;
+    mix-blend-mode: multiply;
   }
 
   section {
