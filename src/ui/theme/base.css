@@ -13,6 +13,10 @@
     font-family: "Garnett", sans-serif;
   }
 
+  section {
+    scroll-margin-top: 10rem;
+  }
+
   p {
     font-weight: 400;
   }

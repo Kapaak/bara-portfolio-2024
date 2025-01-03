@@ -1,7 +1,7 @@
 export const navigation = [
   {
-    title: "Co dělám?",
-    href: "/",
+    title: "Domů",
+    href: "",
   },
   {
     title: "Kdo jsem?",
