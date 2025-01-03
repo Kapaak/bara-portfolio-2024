@@ -22,9 +22,9 @@ export default {
       },
       fontSize: {
         h1: [
-          calculateRem(64),
+          calculateRem(40),
           {
-            lineHeight: calculateRem(64),
+            lineHeight: calculateRem(40),
           },
         ],
         h2: [

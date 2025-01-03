@@ -2,6 +2,8 @@
 import MaxWidth from "@components/MaxWidth.astro";
 import PaperList from "@components/PaperList.astro";
 import PaperNote from "@components/PaperNote.astro";
+
+import { focus } from "@constants/focus";
 ---
 
 <section>
@@ -13,9 +15,11 @@ import PaperNote from "@components/PaperNote.astro";
     <div
       class="hidden sm:flex sm:max-w-[55rem] mx-auto flex-col gap-6 lg:flex-row lg:max-w-full"
     >
-      <PaperNote />
-      <PaperNote />
-      <PaperNote />
+      {
+        focus.map((item) => (
+          <PaperNote title={item.title} description={item.description} />
+        ))
+      }
     </div>
   </MaxWidth>
 </section>
