@@ -7,7 +7,9 @@ interface Props {
 const { title, description }: Props = Astro.props;
 ---
 
-<div class="relative paper-bg pt-[7rem] pb-[5rem] px-6">
+<div
+  class="relative paper-bg pt-[7rem] pb-[5rem] px-6 rotate-2 hover:rotate-0 transition-transform"
+>
   <h2 class="font-secondary text-[3.4rem]">{title}</h2>
   <p>
     {description}
