@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Garnett-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Garnett-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Salted";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Salted-Regular.woff") format("woff");
+}

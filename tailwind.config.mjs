@@ -16,6 +16,10 @@ export default {
         tetriary: "#B9EFBB",
         background: "#F4EBE4",
       },
+      fontFamily: {
+        primary: ["Garnett", "sans-serif"],
+        secondary: ["Salted", "sans-serif"],
+      },
       fontSize: {
         h1: [
           calculateRem(64),
@@ -61,6 +65,9 @@ export default {
       }),
       zIndex: {
         negative: "-1",
+      },
+      boxShadow: {
+        regular: "0 0 50px 0 rgba(0, 0, 0, 0.1)",
       },
       maxWidth: {
         small: "87rem",

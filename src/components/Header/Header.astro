@@ -1,7 +1,7 @@
 ---
 import MaxWidth from "@components/MaxWidth.astro";
 import Button from "../Button.astro";
-import Navigation from "./parts/Navigation/Navigation.astro";
+import Navigation from "./parts/Navigation.astro";
 import { Image } from "astro:assets";
 
 import logoSVG from "../../assets/icons/logo.svg";
@@ -9,13 +9,14 @@ import logoSVG from "../../assets/icons/logo.svg";
 
 <header class="sticky top-0 z-50 bg-background">
   <MaxWidth>
-    <div class="border-b-black py-5 border-b-2">
+    <div class="border-b-black py-5 border-b-2 relative">
       <div class="flex justify-between items-center">
         <a href="/">
           <Image src={logoSVG} alt="Logo pro stránku Barbory Novákové" />
         </a>
         <Navigation />
-        <a href="#kontakt"><Button>Napiš mi</Button></a>
+        <a href="#kontakt" class="hidden md:inline"><Button>Napiš mi</Button></a
+        >
       </div>
     </div>
   </MaxWidth>

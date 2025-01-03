@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+
+import ExternalLinks from "./ExternalLinks.astro";
+
+import hamburgerSVG from "../../../assets/hand-made/hamburger.svg";
+import closeSVG from "../../../assets/hand-made/close.svg";
+
+import { navigation } from "@constants/navigation";
+---
+
+<style>
+  .nav-links {
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<nav class="flex gap-6">
+  <ExternalLinks class="hidden md:flex gap-6" />
+
+  <div
+    class="pt-[2.5rem] pb-[3.5rem] px-4 absolute shadow-regular left-0 bottom-0 w-full bg-background translate-y-full text-center nav-links"
+  >
+    <ul class="flex flex-col gap-[3rem] font-secondary text-h3">
+      {
+        navigation.map((navItem) => (
+          <li class="flex">
+            <a class="w-full" href={navItem.href}>
+              {navItem.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <ExternalLinks class="flex items-center justify-center mt-[4.8rem] gap-5" />
+  </div>
+
+  <button class="md:hidden hamburger-button">
+    <Image src={hamburgerSVG} alt="Mail icon" />
+    <Image class="hidden" src={closeSVG} alt="Mail icon" />
+  </button>
+</nav>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const hamburger = document.querySelector(".hamburger-button");
+    const navLinksParent = document.querySelector(".nav-links");
+    const navLinks = document.querySelectorAll(".nav-links ul li");
+
+    const reset = () => {
+      navLinksParent?.classList.remove("show");
+      hamburger?.firstElementChild?.classList.remove("hidden");
+      hamburger?.lastElementChild?.classList.add("hidden");
+    };
+
+    navLinks?.forEach((navLink) => {
+      navLink.addEventListener("click", reset);
+    });
+
+    hamburger?.addEventListener("click", () => {
+      navLinksParent?.classList.toggle("show");
+
+      if (navLinksParent?.classList?.contains("show")) {
+        hamburger?.firstElementChild?.classList.add("hidden");
+        hamburger?.lastElementChild?.classList.toggle("hidden");
+      } else {
+        hamburger?.lastElementChild?.classList.add("hidden");
+        hamburger?.firstElementChild?.classList.toggle("hidden");
+      }
+    });
+
+    window.addEventListener("resize", reset);
+  });
+</script>
