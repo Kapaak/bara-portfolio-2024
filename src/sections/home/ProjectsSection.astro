@@ -21,7 +21,7 @@ const remainingProjects = projects.slice(3);
             imageAlt={project?.imageAlt}
             detailUrl={project?.slug}
             description={project?.description}
-            odd={index % 2 === 0}
+            odd={index % 2 !== 0}
           />
         ))
       }
@@ -36,7 +36,7 @@ const remainingProjects = projects.slice(3);
               imageAlt={project?.imageAlt}
               detailUrl={project?.slug}
               description={project?.description}
-              odd={(index + initialProjects.length) % 2 === 0}
+              odd={(index + initialProjects.length) % 2 !== 0}
             />
           ))
         }
