@@ -13,6 +13,13 @@
 }
 
 @font-face {
+  font-family: "Garnett";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/Garnett-Semibold.woff") format("woff");
+}
+
+@font-face {
   font-family: "Salted";
   font-style: normal;
   font-weight: 500;
