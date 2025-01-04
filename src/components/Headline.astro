@@ -1,11 +1,29 @@
 ---
-interface Props {
-  class?: string;
-}
+import type { HTMLAttributes } from "astro/types";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const { class: className = "text-primary" } = Astro.props;
+const headline = cva("headline", {
+  variants: {
+    size: {
+      small: ["text-h3", "font-semibold"],
+      regular: ["text-h2", "font-[500]"],
+    },
+    colored: {
+      default: ["text-black"],
+      white: ["text-background"],
+      primary: ["text-primary"],
+      secondary: ["text-secondary"],
+    },
+  },
+});
+
+export interface Props
+  extends Omit<HTMLAttributes<"div">, "disabled">,
+    VariantProps<typeof headline> {}
+
+const { class: className, colored = "default", size = "regular" } = Astro.props;
 ---
 
-<h2 class={`text-h2  font-[500] pb-4 ${className}`}>
+<h2 class={headline({ size, colored, className })}>
   <slot />
 </h2>

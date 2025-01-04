@@ -16,7 +16,7 @@ const maxWidth = cva(["max-w-regular", "mx-auto", "lg:px-[2.4rem]"], {
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<"button">, "disabled">,
+  extends Omit<HTMLAttributes<"div">, "disabled">,
     VariantProps<typeof maxWidth> {}
 
 const {
