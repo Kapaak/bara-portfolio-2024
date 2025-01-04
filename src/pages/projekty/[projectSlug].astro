@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import { getProjectDetailBySlug } from "@sanity/api";
 import { urlFor } from "@sanity/utils";
+import DescriptionSection from "@sections/project-detail/DescriptionSection.astro";
 import HeroSection from "@sections/project-detail/HeroSection.astro";
 
 const { projectSlug } = Astro.params;
@@ -14,49 +15,16 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
     <HeroSection
       title={projectDetail?.parentProject?.name}
       tags={projectDetail?.parentProject?.tags}
-      image={urlFor(projectDetail?.parentProject?.image)?.url()}
+      image={projectDetail?.parentProject?.image
+        ? urlFor(projectDetail?.parentProject?.image)?.url()
+        : undefined}
       imageAlt={projectDetail?.parentProject?.imageAlt}
       year={projectDetail?.parentProject?.year}
     />
 
-    <p>
-      {projectDetail?.parentProject?.description}
-    </p>
-
-    <p>TODO: Ikony v cem to bylo vytvoreno</p>
-
-    <p>TODO: carousel obrazku k projektu</p>
-
-    <section>
-      <h3>Barvy</h3>
-      <p>
-        Barevná paleta je vybrána, aby podtrhovala hravost plavecké školy.
-        Primární barvy #014B8B a #DCE9FA vytvářejí vodní atmosféru. Sekundární
-        barvy přidávají dynamiku a jas: #FFCA0F je určena pro plavecké kurzy,
-        zatímco #73F0C0 je vyhrazena pro tábory, což pomáhá jasně odlišit různé
-        aktivity.
-      </p>
-      <div>
-        TODO: OBRAZEK k Barvam<img />
-      </div>
-    </section>
-
-    <section>
-      <h3>Fonty</h3>
-
-      <div class="flex gap-6">
-        <p class="flex-1">
-          Jsem grafická designérka se zaměřením na tvorbu originálních vizuálů.
-          Pracovala jsem v marketingové agentuře, kde jsem se podílela na
-          kampaních pro různé značky a vytváření kompletních vizuálních identit.
-          Díky práci na různorodým projektech mám široký rozhled, který nyní
-          rozvíjím jako freelancer.
-        </p>
-        <div class="flex-1">
-          TODO: OBRAZEK k Barvam<img />
-        </div>
-      </div>
-    </section>
+    <DescriptionSection
+      description={projectDetail?.parentProject?.description}
+    />
 
     <!-- //TOHLE UZ BY MOHLO CELY CHODIT ZE SANITY -->
     <div>

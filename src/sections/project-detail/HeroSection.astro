@@ -11,26 +11,30 @@ interface Props {
   year?: number;
 }
 
-const { title, tags = [], image, imageAlt, year } = Astro.props;
+const { title, tags = [], image, imageAlt = "", year } = Astro.props;
 ---
 
 <section>
-  <MaxWidth>
+  <MaxWidth size="small">
     <div class="flex flex-col gap-3">
       <Headline>
         {title}
       </Headline>
-      <div class="h-[45.4rem] relative">
-        <img
-          src={image}
-          alt={imageAlt}
-          class="object-cover max-h-full h-full w-full"
-        />
+      <div class="h-[45.4rem] relative bg-[#D9D9D9]">
+        {
+          image && (
+            <img
+              src={image}
+              alt={imageAlt}
+              class="object-cover max-h-full h-full w-full"
+            />
+          )
+        }
       </div>
 
       <div class="flex items-center justify-between">
         {
-          tags.length > 0 && (
+          tags?.length > 0 && (
             <ul class="flex gap-2">
               {tags.map((tag) => (
                 <li>
@@ -41,7 +45,7 @@ const { title, tags = [], image, imageAlt, year } = Astro.props;
           )
         }
 
-        <span>{year}</span>
+        <strong>{year}</strong>
       </div>
     </div>
   </MaxWidth>

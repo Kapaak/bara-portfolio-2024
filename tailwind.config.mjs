@@ -39,6 +39,12 @@ export default {
             lineHeight: calculateRem(24),
           },
         ],
+        body1: [
+          calculateRem(24),
+          {
+            lineHeight: calculateRem(24 * 1.5),
+          },
+        ],
         body2: [
           calculateRem(16),
           {
