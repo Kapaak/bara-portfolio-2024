@@ -1,34 +1,40 @@
 ---
+import Headline from "@components/Headline.astro";
+import MaxWidth from "@components/MaxWidth.astro";
+import PortableText from "@components/PortableText.astro";
 import Layout from "@layouts/Layout.astro";
 import { getProjectDetailBySlug } from "@sanity/api";
 import { urlFor } from "@sanity/utils";
+import AboutProjectSection from "@sections/project-detail/AboutProjectSection.astro";
 import DescriptionSection from "@sections/project-detail/DescriptionSection.astro";
 import HeroSection from "@sections/project-detail/HeroSection.astro";
 
 const { projectSlug } = Astro.params;
 
 const projectDetail = await getProjectDetailBySlug(projectSlug);
+console.log("🚀 ~ projectDetail:", projectDetail);
 ---
 
 <Layout title={projectDetail?.parentProject?.name}>
-  <main class="flex flex-col gap-15 lg:gap-20 mb-15 lg:mb-20">
-    <HeroSection
-      title={projectDetail?.parentProject?.name}
-      tags={projectDetail?.parentProject?.tags}
-      image={projectDetail?.parentProject?.image
-        ? urlFor(projectDetail?.parentProject?.image)?.url()
-        : undefined}
-      imageAlt={projectDetail?.parentProject?.imageAlt}
-      year={projectDetail?.parentProject?.year}
-    />
+  <main>
+    <MaxWidth size="small">
+      <div class="flex flex-col gap-15 lg:gap-20 mb-15 lg:mb-20">
+        <HeroSection
+          title={projectDetail?.parentProject?.name}
+          tags={projectDetail?.parentProject?.tags}
+          image={projectDetail?.parentProject?.image
+            ? urlFor(projectDetail?.parentProject?.image)?.url()
+            : undefined}
+          imageAlt={projectDetail?.parentProject?.imageAlt}
+          year={projectDetail?.parentProject?.year}
+        />
 
-    <DescriptionSection
-      description={projectDetail?.parentProject?.description}
-    />
+        <DescriptionSection
+          description={projectDetail?.parentProject?.description}
+        />
 
-    <!-- //TOHLE UZ BY MOHLO CELY CHODIT ZE SANITY -->
-    <div>
-      <h3>Nadpis Tématu</h3>
-    </div>
+        <AboutProjectSection projectDescriptions={projectDetail?.sections} />
+      </div>
+    </MaxWidth>
   </main>
 </Layout>

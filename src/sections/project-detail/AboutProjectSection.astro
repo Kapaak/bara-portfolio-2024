@@ -1,0 +1,28 @@
+---
+import Headline from "@components/Headline.astro";
+import MaxWidth from "@components/MaxWidth.astro";
+import PortableText from "@components/PortableText.astro";
+
+interface Props {
+  projectDescriptions: any[];
+}
+
+const { projectDescriptions } = Astro.props;
+
+//TODO: prijde do headline variantu pro small a color ...
+---
+
+<section>
+  <div class="flex flex-col gap-15 lg:gap-20 mb-15 lg:mb-20">
+    {
+      projectDescriptions?.map((section) => (
+        <section>
+          <Headline size="small" color="primary">
+            {section?.title}
+          </Headline>
+          <PortableText portableText={section?.richText} />
+        </section>
+      ))
+    }
+  </div>
+</section>

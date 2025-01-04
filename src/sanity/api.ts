@@ -38,6 +38,7 @@ export async function getProjectDetailBySlug(
   },
   },
    usedTechnologies,
+   sections,
    gallery[]{asset->{...,metadata}},
   }[0]`;
 

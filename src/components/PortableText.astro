@@ -1,0 +1,11 @@
+---
+import { PortableText as PortableTextInternal } from "astro-portabletext";
+
+interface Props {
+  portableText: any;
+}
+
+const { portableText } = Astro.props;
+---
+
+<PortableTextInternal value={portableText} />
