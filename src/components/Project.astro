@@ -31,7 +31,7 @@ const {
 
 <a href={detailUrl ? `/projekty/${detailUrl}` : ""} class={className}>
   <article
-    class="relative flex gap-[2.4rem] h-[42rem] bg-[#D9D9D9] rounded-small"
+    class="relative flex gap-[2.4rem] h-[33.3rem] md:h-[42rem] bg-[#D9D9D9] rounded-small"
   >
     {
       image && (
@@ -42,7 +42,7 @@ const {
           height={image?.asset?.metadata?.dimensions?.height}
           loading="lazy"
           decoding="async"
-          class="h-full object-cover rounded-[inherit] absolute"
+          class="h-full object-cover rounded-[inherit] absolute w-full"
         />
       )
     }

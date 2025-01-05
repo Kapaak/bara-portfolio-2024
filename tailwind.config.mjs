@@ -81,7 +81,8 @@ export default {
         regular: "132rem",
       },
       gridTemplateColumns: {
-        regular: "repeat(auto-fit, minmax(300px, 1fr))",
+        small: "repeat(auto-fill, minmax(33rem, 42rem))",
+        regular: "repeat(auto-fill, minmax(35rem, 1fr))",
       },
     },
   },

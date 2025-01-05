@@ -10,7 +10,9 @@ const projects = await getProjects();
 <section id="portfolio">
   <MaxWidth>
     <div class="flex flex-col gap-[4.8rem]">
-      <div class="grid grid-cols-regular gap-10">
+      <div
+        class="grid place-content-center md:grid-cols-2 lg:grid-cols-small gap-10 xl:grid-cols-regular"
+      >
         {
           projects.map((project) => (
             <Project
