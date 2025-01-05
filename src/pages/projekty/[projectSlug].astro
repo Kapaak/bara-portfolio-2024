@@ -1,7 +1,5 @@
 ---
-import Headline from "@components/Headline.astro";
 import MaxWidth from "@components/MaxWidth.astro";
-import PortableText from "@components/PortableText.astro";
 import Layout from "@layouts/Layout.astro";
 import { getProjectDetailBySlug } from "@sanity/api";
 import { urlFor } from "@sanity/utils";
@@ -12,7 +10,6 @@ import HeroSection from "@sections/project-detail/HeroSection.astro";
 const { projectSlug } = Astro.params;
 
 const projectDetail = await getProjectDetailBySlug(projectSlug);
-console.log("🚀 ~ projectDetail:", projectDetail);
 ---
 
 <Layout title={projectDetail?.parentProject?.name}>
