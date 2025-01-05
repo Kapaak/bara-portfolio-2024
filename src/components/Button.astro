@@ -41,12 +41,14 @@ const {
   intent = "filled",
   size = "medium",
   disabled = false,
+  ...rest
 } = Astro.props;
 ---
 
 <button
   class={button({ intent, size, disabled, className })}
   disabled={disabled}
+  {...rest}
 >
   <slot />
 </button>

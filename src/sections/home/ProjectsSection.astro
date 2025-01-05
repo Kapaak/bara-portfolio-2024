@@ -5,8 +5,6 @@ import Project from "@components/Project.astro";
 import { getProjects } from "@sanity/api";
 
 const projects = await getProjects();
-const initialProjects = projects.slice(0, 3);
-const remainingProjects = projects.slice(3);
 ---
 
 <section id="portfolio">
@@ -14,7 +12,7 @@ const remainingProjects = projects.slice(3);
     <div class="flex flex-col gap-[4.8rem]">
       <div class="grid grid-cols-regular gap-10">
         {
-          initialProjects.map((project) => (
+          projects.map((project) => (
             <Project
               title={project?.name}
               tags={project?.tags}
@@ -23,54 +21,63 @@ const remainingProjects = projects.slice(3);
               detailUrl={project?.slug}
               tagColor={project?.tagColor}
               titleColor={project?.titleColor}
+              class="project"
             />
           ))
         }
-
-        <div id="remaining-projects" class="hidden">
-          {
-            remainingProjects.map((project) => (
-              <Project
-                title={project?.name}
-                tags={project?.tags}
-                image={project?.image}
-                imageAlt={project?.imageAlt}
-                detailUrl={project?.slug}
-                tagColor={project?.tagColor}
-                titleColor={project?.titleColor}
-              />
-            ))
-          }
-        </div>
       </div>
-      {
-        projects?.length > 3 && (
-          <Button class="more-projects-button self-center" intent="bordered">
-            Zobrazit další projekty
-          </Button>
-        )
-      }
+
+      <Button
+        class="more-projects-button self-center"
+        aria-pressed="false"
+        intent="bordered"
+      >
+        Zobrazit další projekty
+      </Button>
     </div>
   </MaxWidth>
 </section>
 
-<script is:inline>
+<script>
   document.addEventListener("astro:page-load", () => {
     const toggleButton = document.querySelector(".more-projects-button");
+    const projects = document.querySelectorAll(".project");
 
-    function toggleProjects(event) {
-      const remainingProjects = document.getElementById("remaining-projects");
-      const button = event.target;
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+    const hasToggleButton = projects?.length > 3 && isMobile;
 
-      if (remainingProjects.classList.contains("hidden")) {
-        remainingProjects.classList.remove("hidden");
-        button.textContent = "Zobrazit méně projektů";
-      } else {
-        remainingProjects.classList.add("hidden");
-        button.textContent = "Zobrazit další projekty";
-      }
+    if (!hasToggleButton) {
+      toggleButton?.classList.toggle("hidden");
+    } else {
+      toggleButton?.classList.remove("hidden");
+
+      projects.forEach((project, index) => {
+        if (index > 2) {
+          project.classList.add("hidden");
+        }
+      });
     }
 
-    toggleButton.addEventListener("click", toggleProjects);
+    function toggleProjects() {
+      if (!toggleButton) {
+        return;
+      }
+
+      const allProjectsVisible =
+        toggleButton.getAttribute("aria-pressed") === "true";
+
+      projects.forEach((project, index) => {
+        if (index > 2) {
+          project.classList.toggle("hidden", allProjectsVisible);
+        }
+      });
+
+      toggleButton.textContent = allProjectsVisible
+        ? "Zobrazit další projekty"
+        : "Zobrazit méně projektů";
+      toggleButton.setAttribute("aria-pressed", String(!allProjectsVisible));
+    }
+
+    toggleButton?.addEventListener("click", toggleProjects);
   });
 </script>
