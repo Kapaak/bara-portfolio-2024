@@ -11,6 +11,7 @@
       "@components/*": ["src/components/*"],
       "@sanity/*": ["src/sanity/*"],
       "@constants/*": ["src/constants/*"],
+      "@utils/*": ["src/utils/*"],
     }
   }
 }

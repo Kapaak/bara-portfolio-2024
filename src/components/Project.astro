@@ -2,8 +2,8 @@
 import Tag from "./Tag.astro";
 import { Image } from "astro:assets";
 import { urlFor } from "@sanity/utils";
+import { tailwindColorToIntent } from "@utils/tailwind";
 import type { SanityImage } from "@sanity/types";
-import Headline from "./Headline.astro";
 
 interface Props {
   title?: string;
@@ -12,9 +12,18 @@ interface Props {
   tags?: { name: string; value: string }[];
   image?: SanityImage;
   imageAlt?: string;
+  tagColor?: string;
+  titleColor?: string;
 }
 
-const { title, tags, image, imageAlt = "" } = Astro.props;
+const {
+  title,
+  tags,
+  image,
+  imageAlt = "",
+  tagColor = "background",
+  titleColor = "background",
+} = Astro.props;
 ---
 
 <article
@@ -41,13 +50,13 @@ const { title, tags, image, imageAlt = "" } = Astro.props;
       tags && (
         <div class="flex gap-5">
           {tags.map((tag) => (
-            <Tag>{tag.name}</Tag>
+            <Tag intent={tailwindColorToIntent(tagColor)}>{tag.name}</Tag>
           ))}
         </div>
       )
     }
 
-    <h3 class="text-body1 font-semibold max-w-[50%] text-background">
+    <h3 class={`text-body1 font-semibold max-w-[50%] text-${titleColor}`}>
       {title}
     </h3>
 

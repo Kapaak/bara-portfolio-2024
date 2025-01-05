@@ -12,6 +12,8 @@ export async function getProjects(): Promise<SanityProject[]> {
     "value":value.current
   },
   image{asset->{...,metadata}},
+  tagColor,
+  titleColor,
   "imageAlt":image.alt,
   orderRank,
   }|order(orderRank)`;
