@@ -4,15 +4,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 const headline = cva("headline", {
   variants: {
-    size: {
-      small: ["text-h3", "font-semibold"],
-      regular: ["text-h2", "font-medium"],
-    },
-    colored: {
+    intent: {
       default: ["text-black"],
       white: ["text-background"],
       primary: ["text-primary"],
       secondary: ["text-secondary"],
+    },
+    size: {
+      small: ["text-h3", "font-semibold"],
+      regular: ["text-h2", "font-medium"],
     },
   },
 });
@@ -21,9 +21,9 @@ export interface Props
   extends Omit<HTMLAttributes<"div">, "disabled">,
     VariantProps<typeof headline> {}
 
-const { class: className, colored = "default", size = "regular" } = Astro.props;
+const { class: className, intent = "default", size = "regular" } = Astro.props;
 ---
 
-<h2 class={headline({ size, colored, className })}>
+<h2 class={headline({ size, intent, className })}>
   <slot />
 </h2>

@@ -1,13 +1,9 @@
 ---
-import LinkIcon from "./LinkIcon.astro";
 import Tag from "./Tag.astro";
 import { Image } from "astro:assets";
 import { urlFor } from "@sanity/utils";
 import type { SanityImage } from "@sanity/types";
 import Headline from "./Headline.astro";
-
-import linkSVG from "../assets/hand-made/link.svg";
-import infoSVG from "../assets/hand-made/info.svg";
 
 interface Props {
   title?: string;
@@ -15,63 +11,32 @@ interface Props {
   externalUrl?: string;
   tags?: { name: string; value: string }[];
   image?: SanityImage;
-  description?: string;
   imageAlt?: string;
-  odd?: boolean;
 }
 
-const {
-  title,
-  detailUrl,
-  externalUrl,
-  tags,
-  image,
-  imageAlt,
-  description,
-  odd,
-} = Astro.props;
+const { title, tags, image, imageAlt = "" } = Astro.props;
 ---
 
-<article class="flex gap-[2.4rem]">
+<article
+  class="relative flex gap-[2.4rem] h-[42rem] bg-[#D9D9D9] rounded-small"
+>
+  {
+    image && (
+      <Image
+        src={urlFor(image)?.url()}
+        alt={imageAlt}
+        width={image?.asset?.metadata?.dimensions?.width}
+        height={image?.asset?.metadata?.dimensions?.height}
+        loading="lazy"
+        decoding="async"
+        class="h-full object-cover rounded-[inherit] absolute"
+      />
+    )
+  }
+
   <div
-    class={`hidden h-[33.6rem] bg-[#D9D9D9] rounded-regular lg:block flex-1 ${odd ? "order-1" : ""}`}
+    class="flex flex-col justify-between items-end text-right gap-4 flex-1 z-10 py-3 px-5"
   >
-    {
-      image && (
-        <Image
-          src={urlFor(image)?.url()}
-          alt={imageAlt ?? "Nebyl přidán žádný popisek obrázku"}
-          width={image?.asset?.metadata?.dimensions?.width}
-          height={image?.asset?.metadata?.dimensions?.height}
-          loading="lazy"
-          decoding="async"
-          class="h-full object-cover rounded-[inherit]"
-        />
-      )
-    }
-  </div>
-
-  <div class="flex flex-col gap-4 flex-1">
-    <Headline colored="primary">{title}</Headline>
-
-    <p>{description}</p>
-
-    <div class="h-[17rem] bg-[#D9D9D9] lg:hidden">
-      {
-        image && (
-          <Image
-            src={urlFor(image)?.url()}
-            alt="Profilová fotka lektora angličtiny Petra Walacha"
-            width={image?.asset?.metadata?.dimensions?.width}
-            height={image?.asset?.metadata?.dimensions?.height}
-            loading="lazy"
-            decoding="async"
-            class="h-full object-cover rounded-[inherit]"
-          />
-        )
-      }
-    </div>
-
     {
       tags && (
         <div class="flex gap-5">
@@ -82,24 +47,17 @@ const {
       )
     }
 
-    <div class="flex flex-col gap-4">
-      <!-- Tohle bude pri kliknuti na cely, pokud jsem na mobilu a nebude viditelny  -->
-      {
-        detailUrl && (
-          <LinkIcon iconSrc={infoSVG} href={`/projekty/${detailUrl}`}>
-            Víc o projektu
-          </LinkIcon>
-        )
-      }
+    <h3 class="text-body1 font-semibold max-w-[50%] text-background">
+      {title}
+    </h3>
 
-      {
-        externalUrl && (
-          <LinkIcon iconSrc={linkSVG} href={externalUrl}>
-            {" "}
-            Podívat se na stránku{" "}
-          </LinkIcon>
-        )
-      }
-    </div>
+    <!-- {
+  externalUrl && (
+    <LinkIcon iconSrc={linkSVG} href={externalUrl}>
+      {" "}
+      Podívat se na stránku{" "}
+    </LinkIcon>
+  )
+} -->
   </div>
 </article>

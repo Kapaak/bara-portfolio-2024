@@ -1,9 +1,28 @@
 ---
 import { Image } from "astro:assets";
 import hashtag from "../assets/hand-made/hashtag.svg";
+import { cva, type VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from "astro/types";
+
+const tag = cva(["flex", "gap-[.2rem]"], {
+  variants: {
+    intent: {
+      default: ["text-black"],
+      white: ["text-background"],
+      primary: ["text-primary"],
+      secondary: ["text-secondary"],
+    },
+  },
+});
+
+export interface Props
+  extends Omit<HTMLAttributes<"div">, "disabled">,
+    VariantProps<typeof tag> {}
+
+const { class: className, intent = "default" } = Astro.props;
 ---
 
-<div class="text-primary flex gap-[.2rem]">
+<div class={tag({ intent, className })}>
   <Image src={hashtag} alt="Tag icon" />
   <slot />
 </div>

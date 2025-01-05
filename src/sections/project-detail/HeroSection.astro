@@ -37,7 +37,7 @@ const { title, tags = [], image, imageAlt = "", year } = Astro.props;
           <ul class="flex gap-2">
             {tags.map((tag) => (
               <li>
-                <Tag>{tag?.name}</Tag>
+                <Tag intent="primary">{tag?.name}</Tag>
               </li>
             ))}
           </ul>

@@ -59,6 +59,7 @@ export default {
         ],
       },
       borderRadius: {
+        small: calculateRem(5),
         regular: calculateRem(25),
       },
       spacing: () => ({
@@ -78,6 +79,9 @@ export default {
       maxWidth: {
         small: "87rem",
         regular: "132rem",
+      },
+      gridTemplateColumns: {
+        regular: "repeat(auto-fit, minmax(300px, 1fr))",
       },
     },
   },

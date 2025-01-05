@@ -11,37 +11,34 @@ const remainingProjects = projects.slice(3);
 
 <section id="portfolio">
   <MaxWidth>
-    <div class="flex flex-col gap-10">
-      {
-        initialProjects.map((project, index) => (
-          <Project
-            title={project?.name}
-            tags={project?.tags}
-            image={project?.image}
-            imageAlt={project?.imageAlt}
-            detailUrl={project?.slug}
-            description={project?.description}
-            odd={index % 2 !== 0}
-          />
-        ))
-      }
-
-      <div id="remaining-projects" class="hidden">
+    <div class="flex flex-col gap-[4.8rem]">
+      <div class="grid grid-cols-regular gap-10">
         {
-          remainingProjects.map((project, index) => (
+          initialProjects.map((project) => (
             <Project
               title={project?.name}
               tags={project?.tags}
               image={project?.image}
               imageAlt={project?.imageAlt}
               detailUrl={project?.slug}
-              description={project?.description}
-              odd={(index + initialProjects.length) % 2 !== 0}
             />
           ))
         }
-      </div>
 
+        <div id="remaining-projects" class="hidden">
+          {
+            remainingProjects.map((project) => (
+              <Project
+                title={project?.name}
+                tags={project?.tags}
+                image={project?.image}
+                imageAlt={project?.imageAlt}
+                detailUrl={project?.slug}
+              />
+            ))
+          }
+        </div>
+      </div>
       {
         projects?.length > 3 && (
           <Button class="more-projects-button self-center" intent="bordered">

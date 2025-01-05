@@ -15,7 +15,7 @@ const { projectDescriptions } = Astro.props;
       projectDescriptions?.map((section) => (
         <section>
           <div class="flex flex-col gap-5">
-            <Headline size="small" colored="primary">
+            <Headline size="small" intent="primary">
               {section?.title}
             </Headline>
             <PortableText portableText={section?.richText} />
