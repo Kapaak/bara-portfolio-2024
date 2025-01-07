@@ -2,7 +2,7 @@
  Website for graphic designer Barbora Nováková.
  This website consists of frontend created in ```Astro.js``` and headless CMS in ```Sanity.io```.
 
-
+> Repository for the CMS is located [here](https://github.com/Kapaak/sanity-bara-novakova)
 
 ## 🚀 Project Structure
 
