@@ -41,4 +41,4 @@ The difference between images/icons put in assets folder and public folder is th
 ## 💡 Start the development
 - Use yarn package manager.
 - Development is in port 4321 and start it by typing ```yarn dev```.
-- ❗️There is an issue, where the ```yarn dev``` sometimes crushes on error with ```"string-width"``` package. To resolve this delete ```yarn.lock``` file and install dependencies again.
+- ❗️There is an issue, where the ```yarn dev``` sometimes crashes on error with ```"string-width"``` package. To resolve this delete ```yarn.lock``` file and install dependencies again.
