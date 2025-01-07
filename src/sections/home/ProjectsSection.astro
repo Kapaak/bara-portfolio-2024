@@ -1,5 +1,6 @@
 ---
 import Button from "@components/Button.astro";
+import Decoration from "@components/Decoration.astro";
 import MaxWidth from "@components/MaxWidth.astro";
 import Project from "@components/Project.astro";
 import { getProjects } from "@sanity/api";
@@ -9,25 +10,27 @@ const projects = await getProjects();
 
 <section id="portfolio">
   <MaxWidth>
-    <div class="flex flex-col gap-[4.8rem]">
-      <div
-        class="grid place-content-center md:grid-cols-2 lg:grid-cols-small gap-10 xl:grid-cols-regular"
-      >
-        {
-          projects.map((project) => (
-            <Project
-              title={project?.name}
-              tags={project?.tags}
-              image={project?.image}
-              imageAlt={project?.imageAlt}
-              detailUrl={project?.slug}
-              tagColor={project?.tagColor}
-              titleColor={project?.titleColor}
-              class="project"
-            />
-          ))
-        }
-      </div>
+    <div class="relative flex flex-col gap-[4.8rem]">
+      <Decoration>
+        <div
+          class="grid place-content-center md:grid-cols-2 lg:grid-cols-small gap-10 xl:grid-cols-regular"
+        >
+          {
+            projects.map((project) => (
+              <Project
+                title={project?.name}
+                tags={project?.tags}
+                image={project?.image}
+                imageAlt={project?.imageAlt}
+                detailUrl={project?.slug}
+                tagColor={project?.tagColor}
+                titleColor={project?.titleColor}
+                class="project"
+              />
+            ))
+          }
+        </div>
+      </Decoration>
 
       <Button
         class="more-projects-button self-center"

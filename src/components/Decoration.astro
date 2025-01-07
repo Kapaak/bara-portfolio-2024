@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+
+import decorationSVG from "../assets/hand-made/decoration.svg";
+---
+
+<div>
+  <div class="decoration absolute top-[-3.5rem] left-[-6rem] z-10">
+    <Image width="77" height="47" src={decorationSVG} alt="Dekorace" />
+  </div>
+  <slot />
+  <div
+    class="decoration absolute bottom-[-4.5rem] right-[-5.5rem] z-10 rotate-180 xl:block"
+  >
+    <Image width="77" height="47" src={decorationSVG} alt="Dekorace" />
+  </div>
+</div>
+
+<style>
+  .decoration {
+    display: none;
+  }
+  @media (min-width: 1399px) {
+    .decoration {
+      display: block;
+    }
+  }
+</style>
