@@ -34,7 +34,7 @@ export default {
           },
         ],
         h3: [
-          calculateRem(24),
+          calculateRem(16),
           {
             lineHeight: calculateRem(24),
           },

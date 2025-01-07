@@ -13,12 +13,12 @@ interface Props {
 const { title, tags = [], image, imageAlt = "", year } = Astro.props;
 ---
 
-<section>
+<section class="pt-10">
   <div class="flex flex-col gap-3">
-    <Headline>
+    <Headline intent="primary">
       {title}
     </Headline>
-    <div class="h-[45.4rem] relative bg-[#D9D9D9]">
+    <div class="h-[20rem] md:h-[30rem] lg:h-[45.4rem] relative bg-[#D9D9D9]">
       {
         image && (
           <img
