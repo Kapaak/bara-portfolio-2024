@@ -1,13 +1,14 @@
 ---
-import Decoration from "@components/Decoration.astro";
-import Headline from "@components/Headline.astro";
-import IconButton from "@components/IconButton.astro";
-import MaxWidth from "@components/MaxWidth.astro";
-import Project from "@components/Project.astro";
+import MaxWidth from "@ui/components/MaxWidth.astro";
+import Headline from "@ui/components/Headline.astro";
+import IconButton from "@ui/components/IconButton.astro";
 
 import { getProjects } from "@sanity/api";
 
-import arrowSVG from "../../assets/hand-made/arrow.svg?raw";
+import arrowSVG from "../../../assets/hand-made/arrow.svg?raw";
+
+import Project from "./parts/Project.astro";
+import Decoration from "@ui/components/Decoration.astro";
 
 const projects = await getProjects();
 ---

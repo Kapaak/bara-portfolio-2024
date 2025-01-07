@@ -1,6 +1,8 @@
 ---
-import Button from "@components/Button.astro";
 import Layout from "@layouts/Layout.astro";
+import IconButton from "@ui/components/IconButton.astro";
+
+import arrowSvg from "../assets/hand-made/arrow.svg?raw";
 ---
 
 <Layout>
@@ -10,9 +12,9 @@ import Layout from "@layouts/Layout.astro";
       <p class="text-primary text-h3 font-medium">
         I ten nejlepší design začíná prázdným plátnem
       </p>
-      <Button class="self-center">
-        <a href="/"> Pojdmě začít znovu </a>
-      </Button>
+      <a href="/" class="self-center"
+        ><IconButton icon={arrowSvg}> Pojdmě začít znovu </IconButton>
+      </a>
     </div>
   </main>
 </Layout>
