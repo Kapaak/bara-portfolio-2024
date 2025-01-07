@@ -1,48 +1,44 @@
-# Astro Starter Kit: Basics
+# Barbora Nováková - Portfolio
+ Website for graphic designer Barbora Nováková.
+ This website consists of frontend created in ```Astro.js``` and headless CMS in ```Sanity.io```.
 
-```sh
-npm create astro@latest -- --template basics
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
 ```text
-/
 ├── public/
-│   └── favicon.svg
+│   └── fonts
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── assets
+│   ├── components
+│   ├── constants
+│   ├── layouts
+│   ├── pages
+│   ├── sanity
+│   ├── sections
+│   ├── ui/
+│       └── components
+│       └── theme
+│   ├── utils
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 👾 Styling
+All styling is done with ```Tailwindjs```. There are some default styles written in .css -> ```ui/theme/...``` for initial setup. All of these .css files are imported in ```Layout.astro```.
 
-## 🧞 Commands
+## 🥗 Components
+There are 2 types of components, first of them are without logic (located in ```src/ui/components/...```) and the rest are some reusable components with logic (located in ```src/components/...```).
 
-All commands are run from the root of the project, from a terminal:
+Each item in components folder can be made of multiple parts, where these parts are used only in this particular place. For such subcomponents there is a ```parts``` folder.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🔖 Sections
+Every page is made of multiple sections. In this folder there is following structure -> ```sections/page-name/SectionName.astro```. These sections are then imported in specific Page in ```/src/pages/...```
 
-## 👀 Want to learn more?
+## 🎉 Assets
+The difference between images/icons put in assets folder and public folder is that the ```/src/assets/...``` items are by default optimized by Astro.js. The only reason to place image-like files in public folder is when its required to target them via css or when they are needed in HTML structure.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 💡 Start the development
+- Use yarn package manager.
+- Development is in port 4321 and start it by typing ```yarn dev```.
+- ❗️There is an issue, where the ```yarn dev``` sometimes crushes on error with ```"string-width"``` package. To resolve this delete ```yarn.lock``` file and install dependencies again.
