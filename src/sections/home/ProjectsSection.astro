@@ -81,5 +81,9 @@ const projects = await getProjects();
     }
 
     toggleButton?.addEventListener("click", toggleProjects);
+
+    return () => {
+      toggleButton?.removeEventListener("click", toggleProjects);
+    };
   });
 </script>
