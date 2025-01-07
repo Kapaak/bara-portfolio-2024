@@ -1,6 +1,7 @@
 ---
 import Button from "@components/Button.astro";
 import Decoration from "@components/Decoration.astro";
+import Headline from "@components/Headline.astro";
 import MaxWidth from "@components/MaxWidth.astro";
 import Project from "@components/Project.astro";
 import { getProjects } from "@sanity/api";
@@ -10,6 +11,9 @@ const projects = await getProjects();
 
 <section id="portfolio">
   <MaxWidth>
+    <Headline intent="primary" class="text-center mb-5 lg:mb-12"
+      >Moje práce</Headline
+    >
     <div class="relative flex flex-col gap-[4.8rem]">
       <Decoration>
         <div
