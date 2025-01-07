@@ -1,10 +1,13 @@
 ---
-import Button from "@components/Button.astro";
 import Decoration from "@components/Decoration.astro";
 import Headline from "@components/Headline.astro";
+import IconButton from "@components/IconButton.astro";
 import MaxWidth from "@components/MaxWidth.astro";
 import Project from "@components/Project.astro";
+
 import { getProjects } from "@sanity/api";
+
+import arrowSVG from "../../assets/hand-made/arrow.svg?raw";
 
 const projects = await getProjects();
 ---
@@ -36,13 +39,14 @@ const projects = await getProjects();
         </div>
       </Decoration>
 
-      <Button
+      <IconButton
         class="more-projects-button self-center"
         aria-pressed="false"
         intent="bordered"
+        icon={arrowSVG}
       >
         Zobrazit další projekty
-      </Button>
+      </IconButton>
     </div>
   </MaxWidth>
 </section>

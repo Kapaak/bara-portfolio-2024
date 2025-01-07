@@ -1,10 +1,12 @@
 ---
 import MaxWidth from "@components/MaxWidth.astro";
-import Button from "../Button.astro";
 import Navigation from "./parts/Navigation.astro";
 import { Image } from "astro:assets";
 
+import IconButton from "@components/IconButton.astro";
+
 import logoSVG from "../../assets/icons/logo.svg";
+import arrowSVG from "../../assets/hand-made/arrow.svg?raw";
 ---
 
 <header class="sticky top-0 z-50 bg-background">
@@ -15,7 +17,8 @@ import logoSVG from "../../assets/icons/logo.svg";
           <Image src={logoSVG} alt="Logo pro stránku Barbory Novákové" />
         </a>
         <Navigation />
-        <a href="#kontakt" class="hidden md:inline"><Button>Napiš mi</Button></a
+        <a href="#kontakt" class="hidden md:inline"
+          ><IconButton icon={arrowSVG}>Napiš mi</IconButton></a
         >
       </div>
     </div>
