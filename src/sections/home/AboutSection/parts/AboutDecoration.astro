@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+
+import pencilSVG from "../../../../assets/hand-made/pencil.svg";
+import faceSVG from "../../../../assets/hand-made/face.svg";
+import curlyArrowSVG from "../../../../assets/hand-made/curly-arrow.svg";
+---
+
+<div class="relative">
+  <Image
+    src={curlyArrowSVG}
+    alt="Vlnitá šipka"
+    class="decoration absolute -left-6 top-6 -translate-x-full"
+  />
+  <Image
+    src={faceSVG}
+    alt="Obličej"
+    width="89"
+    class="decoration-inversed absolute right-0 -translate-y-1/4"
+  />
+  <Image
+    src={faceSVG}
+    alt="Obličej"
+    class="decoration absolute right-0 lg:-left-15 lg:top-[35%] lg:-translate-x-full"
+  />
+  <slot />
+  <Image
+    src={pencilSVG}
+    alt="Ikona tužky"
+    class="decoration absolute -right-4 top-1/2 translate-x-full -translate-y-1/4"
+  />
+</div>
+
+<style>
+  .decoration {
+    display: none;
+  }
+  @media (min-width: 1399px) {
+    .decoration {
+      display: block;
+    }
+    .decoration-inversed {
+      display: none;
+    }
+  }
+</style>
