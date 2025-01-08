@@ -15,13 +15,13 @@ const projects = await getProjects();
 
 <section id="portfolio">
   <MaxWidth>
-    <Headline intent="primary" class="text-center mb-5 lg:mb-12"
+    <Headline intent="primary" class="mb-5 text-center lg:mb-12"
       >Moje práce</Headline
     >
-    <div class="relative flex flex-col gap-[4.8rem]">
+    <div class="relative flex flex-col gap-12">
       <Decoration>
         <div
-          class="grid place-content-center md:grid-cols-2 lg:grid-cols-small gap-10 xl:grid-cols-regular"
+          class="grid place-content-center gap-10 md:grid-cols-2 lg:grid-cols-small xl:grid-cols-regular"
         >
           {
             projects.map((project) => (

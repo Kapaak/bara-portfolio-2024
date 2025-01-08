@@ -11,7 +11,7 @@ const { iconSrc, class: className = "", ...rest } = Astro.props;
 ---
 
 <a
-  class={`inline-flex gap-2 underline underline-offset-4 max-w-max ${className}`}
+  class={`inline-flex max-w-max gap-2 underline underline-offset-4 ${className}`}
   {...rest}
 >
   {iconSrc && <Image src={iconSrc} alt="Ikona pro link" />}

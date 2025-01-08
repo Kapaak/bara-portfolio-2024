@@ -31,7 +31,7 @@ const {
 
 <a href={detailUrl ? `/projekty/${detailUrl}` : ""} class={className}>
   <article
-    class="relative group flex gap-[2.4rem] h-[33.3rem] md:h-[42rem] bg-[#D9D9D9] rounded-small overflow-clip"
+    class="group relative flex h-[33.3rem] gap-6 text-clip rounded-small bg-[#D9D9D9] md:h-[42rem]"
   >
     {
       image && (
@@ -42,13 +42,13 @@ const {
           height={image?.asset?.metadata?.dimensions?.height}
           loading="lazy"
           decoding="async"
-          class="h-full  object-cover rounded-[inherit] absolute w-full transition-all duration-150 group-hover:scale-105 origin-bottom-left"
+          class="absolute  size-full origin-bottom-left rounded-[inherit] object-cover transition-all duration-150 group-hover:scale-105"
         />
       )
     }
 
     <div
-      class="flex flex-col justify-between items-end text-right gap-4 flex-1 z-10 py-3 px-5"
+      class="z-10 flex flex-1 flex-col items-end justify-between gap-4 px-5 py-3 text-right"
     >
       {
         tags && (
@@ -60,7 +60,7 @@ const {
         )
       }
 
-      <h3 class={`text-body1 font-semibold max-w-[60%] text-${titleColor}`}>
+      <h3 class={`text- max-w-[60%] text-body1 font-semibold${titleColor}`}>
         {title}
       </h3>
 
