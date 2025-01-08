@@ -54,6 +54,7 @@ const projects = await getProjects();
 <script>
   document.addEventListener("astro:page-load", () => {
     const toggleButton = document.querySelector(".more-projects-button");
+    const toggleButtonText = document.querySelector(".more-projects-button .icon-button_text");
     const projects = document.querySelectorAll(".project");
 
     const isMobile = window.matchMedia("(max-width: 640px)").matches;
@@ -72,7 +73,7 @@ const projects = await getProjects();
     }
 
     function toggleProjects() {
-      if (!toggleButton) {
+      if (!toggleButton || !toggleButtonText) {
         return;
       }
 
@@ -85,7 +86,7 @@ const projects = await getProjects();
         }
       });
 
-      toggleButton.textContent = allProjectsVisible
+      toggleButtonText.textContent = allProjectsVisible
         ? "Zobrazit další projekty"
         : "Zobrazit méně projektů";
       toggleButton.setAttribute("aria-pressed", String(!allProjectsVisible));

@@ -13,6 +13,6 @@ const { icon, class: className, ...rest } = Astro.props;
   class:list={["flex", "gap-[1rem]", "items-center", className]}
   {...rest}
 >
-  <slot />
+  <span class="icon-button_text"><slot /></span>
   <Fragment set:html={icon} />
 </Button>
