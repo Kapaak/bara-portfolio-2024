@@ -1,4 +1,4 @@
-import type { SanityProject, SanityProjectDetail } from '@types';
+import type { SanityProject, SanityProjectDetail } from '@domains';
 import groq from 'groq';
 import { sanityClient } from 'sanity:client';
 
