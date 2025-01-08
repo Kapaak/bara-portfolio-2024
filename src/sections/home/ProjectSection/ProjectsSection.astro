@@ -25,7 +25,7 @@ const projects = await getProjects();
           {
             projects.map((project) => (
               <Project
-                title={project?.name}
+                name={project?.name}
                 tags={project?.tags}
                 image={project?.image}
                 imageAlt={project?.imageAlt}

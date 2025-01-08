@@ -1,24 +1,17 @@
 ---
-import type { SanityImage } from "@sanity/types";
 import { urlFor } from "@sanity/utils";
+import type { SanityProject } from "@types";
 import Tag from "@ui/components/Tag.astro";
 import { tailwindColorToIntent } from "@utils/tailwind";
 import { Image } from "astro:assets";
 
-interface Props {
-  title?: string;
-  detailUrl?: string;
-  externalUrl?: string;
-  tags?: { name: string; value: string }[];
-  image?: SanityImage;
-  imageAlt?: string;
-  tagColor?: string;
-  titleColor?: string;
+interface Props extends Partial<SanityProject>{
   class?: string;
+  detailUrl?: string | null;
 }
 
 const {
-  title,
+  name,
   tags,
   image,
   detailUrl,
@@ -38,8 +31,8 @@ const {
         <Image
           src={urlFor(image)?.url()}
           alt={imageAlt}
-          width={image?.asset?.metadata?.dimensions?.width}
-          height={image?.asset?.metadata?.dimensions?.height}
+          width={image?.asset?.metadata?.dimensions?.width ?? 0}
+          height={image?.asset?.metadata?.dimensions?.height?? 0}
           loading="lazy"
           decoding="async"
           class="absolute size-full origin-bottom-left rounded-[inherit] object-cover transition-all duration-150 group-hover:scale-105"
@@ -54,24 +47,15 @@ const {
         tags && (
           <div class="flex gap-5">
             {tags.map((tag) => (
-              <Tag intent={tailwindColorToIntent(tagColor)}>{tag.name}</Tag>
+              <Tag intent={tailwindColorToIntent(String(tagColor))}>{tag.name}</Tag>
             ))}
           </div>
         )
       }
 
       <h3 class={`text- max-w-[60%] text-body1 font-semibold${titleColor}`}>
-        {title}
+        {name}
       </h3>
-
-      <!-- {
-  externalUrl && (
-    <LinkIcon iconSrc={linkSVG} href={externalUrl}>
-      {" "}
-      Podívat se na stránku{" "}
-    </LinkIcon>
-  )
-} -->
     </div>
   </article>
 </a>

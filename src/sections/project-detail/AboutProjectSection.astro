@@ -1,9 +1,10 @@
 ---
-import PortableText from "@components/PortableText/PortableText.astro";
-import Headline from "@ui/components/Headline.astro";
+import PortableText from '@components/PortableText/PortableText.astro';
+import type { SanityBlockContentObject } from '@types';
+import Headline from '@ui/components/Headline.astro';
 
 interface Props {
-  projectDescriptions: any[];
+  projectDescriptions: Array<SanityBlockContentObject> | null;
 }
 
 const { projectDescriptions } = Astro.props;

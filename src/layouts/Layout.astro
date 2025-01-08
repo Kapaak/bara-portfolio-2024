@@ -1,19 +1,19 @@
 ---
-import Footer from "@components/Footer/Footer.astro";
-import Header from "@components/Header/Header.astro";
-import { ClientRouter } from "astro:transitions";
+import Footer from '@components/Footer/Footer.astro';
+import Header from '@components/Header/Header.astro';
+import { ClientRouter } from 'astro:transitions';
 
-import "@ui/theme/style-reset.css";
-import "@ui/theme/fonts.css";
-import "@ui/theme/base.css";
+import '@ui/theme/base.css';
+import '@ui/theme/fonts.css';
+import '@ui/theme/style-reset.css';
 
 interface Props {
-  title?: string;
+  title?: string | null;
 }
 
 const { title } = Astro.props;
 
-const fullTitle = title ? `BN Projekt | ${title}` : "Barbora Nováková";
+const fullTitle = title ? `BN Projekt | ${title}` : 'Barbora Nováková';
 ---
 
 <!doctype html>

@@ -1,28 +1,26 @@
 ---
-import Headline from "@ui/components/Headline.astro";
-import Tag from "@ui/components/Tag.astro";
+import type { SanityProjectDetail } from '@types';
+import Headline from '@ui/components/Headline.astro';
+import Tag from '@ui/components/Tag.astro';
 
-interface Props {
-  title?: string;
-  tags?: { name: string; value: string }[];
-  image?: string;
-  imageAlt?: string;
-  year?: number;
+interface Props
+  extends Partial<NonNullable<SanityProjectDetail['parentProject']>> {
+  projectImage?: string;
 }
 
-const { title, tags = [], image, imageAlt = "", year } = Astro.props;
+const { name, tags, projectImage, imageAlt = '', year } = Astro.props;
 ---
 
 <section class="pt-10">
   <div class="flex flex-col gap-3">
     <Headline intent="primary">
-      {title}
+      {name}
     </Headline>
     <div class="relative h-80 bg-[#D9D9D9] md:h-[30rem] lg:h-[45.4rem]">
       {
-        image && (
+        projectImage && (
           <img
-            src={image}
+            src={projectImage}
             alt={imageAlt}
             class="size-full max-h-full object-cover"
           />
@@ -32,9 +30,9 @@ const { title, tags = [], image, imageAlt = "", year } = Astro.props;
 
     <div class="flex items-center justify-between">
       {
-        tags?.length > 0 && (
+        (tags ?? []).length > 0 && (
           <ul class="flex gap-2">
-            {tags.map((tag) => (
+            {tags?.map((tag) => (
               <li>
                 <Tag intent="primary">{tag?.name}</Tag>
               </li>

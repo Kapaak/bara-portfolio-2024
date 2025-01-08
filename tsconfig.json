@@ -4,14 +4,15 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths":{
+    "paths": {
       "@ui/*": ["src/ui/*"],
       "@sections/*": ["src/sections/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
       "@sanity/*": ["src/sanity/*"],
       "@constants/*": ["src/constants/*"],
-      "@utils/*": ["src/utils/*"],
+      "@types": ["src/types/index.ts"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }
