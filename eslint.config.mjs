@@ -20,9 +20,10 @@ export default tseslint.config(
       'eslint.config.mjs',
     ],
   },
+  //This plugin causes the warnings in the console after yarn eslint
+  importPlugin.flatConfigs.recommended,
   // Global config
   // JavaScript
-  importPlugin.flatConfigs.recommended,
   eslint.configs.recommended,
   // TypeScript
   ...tseslint.configs.recommended,
