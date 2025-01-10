@@ -1,45 +1,45 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import type { VariantProps } from "class-variance-authority";
-import { cva } from "class-variance-authority";
+import type { HTMLAttributes } from 'astro/types';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
-const button = cva(["border", "rounded-[10rem]", "transition-colors"], {
+const button = cva(['border', 'rounded-[10rem]', 'transition-colors'], {
   variants: {
     intent: {
-      filled: ["border-primary", "bg-primary", "text-background"],
-      bordered: ["border-primary", "text-primary", "bg-background"],
+      filled: ['border-primary', 'bg-primary', 'text-background'],
+      bordered: ['border-primary', 'text-primary', 'bg-background'],
     },
     size: {
-      small: ["text-sm", "py-1", "px-2"],
-      medium: ["py-[1.7rem]", "px-5.5"],
+      small: ['text-sm', 'py-1', 'px-2'],
+      medium: ['py-[1.7rem]', 'px-5.5'],
     },
     disabled: {
       false: null,
-      true: ["opacity-50", "cursor-not-allowed"],
+      true: ['opacity-50', 'cursor-not-allowed'],
     },
   },
   compoundVariants: [
     {
-      intent: "filled",
+      intent: 'filled',
       disabled: false,
-      class: "hover:bg-background hover:text-primary",
+      class: 'hover:bg-background hover:text-primary',
     },
     {
-      intent: "bordered",
+      intent: 'bordered',
       disabled: false,
-      class: "hover:bg-primary hover:text-background",
+      class: 'hover:bg-primary hover:text-background',
     },
   ],
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<"button">, "disabled">,
+  extends Omit<HTMLAttributes<'button'>, 'disabled'>,
     VariantProps<typeof button> {}
 
 const {
   class: className,
-  intent = "filled",
-  size = "medium",
+  intent = 'filled',
+  size = 'medium',
   disabled = false,
   ...rest
 } = Astro.props;
