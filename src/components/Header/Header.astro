@@ -1,15 +1,15 @@
 ---
-import IconButton from "@ui/components/IconButton.astro";
-import MaxWidth from "@ui/components/MaxWidth.astro";
-import { Image } from "astro:assets";
+import IconButton from '@ui/components/IconButton.astro';
+import MaxWidth from '@ui/components/MaxWidth.astro';
+import { Image } from 'astro:assets';
 
-import arrowSVG from "../../assets/hand-made/arrow.svg?raw";
-import logoSVG from "../../assets/icons/logo.svg";
+import arrowSVG from '../../assets/hand-made/arrow.svg?raw';
+import logoSVG from '../../assets/icons/logo.svg';
 
-import Navigation from "./parts/Navigation.astro";
+import Navigation from './parts/Navigation.astro';
 ---
 
-<header class="sticky top-0 z-50 bg-background">
+<header class="bg-image sticky top-0 z-50 bg-background">
   <MaxWidth>
     <div class="relative border-b-2 border-b-black py-5">
       <div class="flex items-center justify-between">
@@ -24,3 +24,9 @@ import Navigation from "./parts/Navigation.astro";
     </div>
   </MaxWidth>
 </header>
+
+<style>
+  .bg-image {
+    background-image: url('/noise.png');
+  }
+</style>

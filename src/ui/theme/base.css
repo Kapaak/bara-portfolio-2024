@@ -6,19 +6,19 @@
   html {
     font-size: 62.5%;
     scroll-behavior: smooth;
-    background-image: url("/pattern.png");
+    background-image: url('/noise.png');
+    background-color: rgb(244 235 228 / var(--tw-bg-opacity, 1));
   }
 
   body {
     font-size: 1.6rem;
-    font-family: "Garnett", sans-serif;
-    mix-blend-mode: multiply;
-    cursor: url("/cursor.svg"), auto;
+    font-family: 'Garnett', sans-serif;
+    cursor: url('/cursor.svg'), auto;
   }
 
   a,
   button {
-    cursor: url("/cursor-hover.svg"), auto;
+    cursor: url('/cursor-hover.svg'), auto;
   }
 
   section {
