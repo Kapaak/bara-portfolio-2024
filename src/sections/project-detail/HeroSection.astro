@@ -2,14 +2,19 @@
 import type { SanityProjectDetail } from '@domains';
 import Headline from '@ui/components/Headline.astro';
 import Tag from '@ui/components/Tag.astro';
+import { Image } from 'astro:assets';
 
 interface Props
   extends Partial<NonNullable<SanityProjectDetail['parentProject']>> {
-  projectImage?: string;
-  imageAlt?: string;
+  projectImage: {
+    src?: string;
+    alt: string;
+    height: number;
+    width: number;
+  };
 }
 
-const { name, tags, projectImage, imageAlt = '', year } = Astro.props;
+const { name, tags, projectImage, year } = Astro.props;
 ---
 
 <section class="pt-10">
@@ -17,13 +22,18 @@ const { name, tags, projectImage, imageAlt = '', year } = Astro.props;
     <Headline intent="primary">
       {name}
     </Headline>
-    <div class:list={['relative h-auto', !projectImage && 'bg-[#D9D9D9]']}>
+    <div
+      class:list={['relative h-auto+', !projectImage?.src && 'bg-[#D9D9D9]']}
+    >
       {
-        projectImage && (
-          <img
-            src={projectImage}
-            alt={imageAlt}
+        projectImage?.src && (
+          <Image
+            src={projectImage.src}
+            width={projectImage.width}
+            height={projectImage.height}
+            alt={projectImage.alt}
             class="size-full max-h-full object-cover"
+            sizes="(max-width: 822px) 90vw, 822px"
           />
         )
       }

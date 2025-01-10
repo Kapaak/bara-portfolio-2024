@@ -10,6 +10,13 @@ import MaxWidth from '@ui/components/MaxWidth.astro';
 const { projectSlug } = Astro.params;
 
 const projectDetail = await getProjectDetailBySlug(projectSlug);
+
+const projectImage = {
+  src: projectDetail?.image ? urlFor(projectDetail?.image).url() : undefined,
+  alt: projectDetail?.imageAlt ?? '',
+  height: projectDetail?.image?.asset?.metadata?.dimensions?.height ?? 0,
+  width: projectDetail?.image?.asset?.metadata?.dimensions?.width ?? 0,
+};
 ---
 
 <Layout title={projectDetail?.parentProject?.name}>
@@ -19,10 +26,7 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
         <HeroSection
           name={projectDetail?.parentProject?.name}
           tags={projectDetail?.parentProject?.tags}
-          projectImage={projectDetail?.image
-            ? urlFor(projectDetail?.image)?.url()
-            : undefined}
-          imageAlt={projectDetail?.imageAlt ?? ''}
+          projectImage={projectImage}
           year={projectDetail?.parentProject?.year}
         />
 

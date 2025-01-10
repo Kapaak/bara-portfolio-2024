@@ -1,25 +1,28 @@
-import { config as dotenvConfig } from "dotenv";
+import { config as dotenvConfig } from 'dotenv';
 
-import { defineConfig } from "astro/config";
+import { defineConfig } from 'astro/config';
 
-import tailwind from "@astrojs/tailwind";
+import tailwind from '@astrojs/tailwind';
 
-import vercel from "@astrojs/vercel";
-import sanity from "@sanity/astro";
+import vercel from '@astrojs/vercel';
+import sanity from '@sanity/astro';
 
 dotenvConfig();
 
 // https://astro.build/config
 export default defineConfig({
   //TODO: Remove output server and use sanity hooks instead !!
-  output: "server",
+  output: 'server',
+  image: {
+    domains: ['cdn.sanity.io'],
+  },
   integrations: [
     tailwind(),
     sanity({
       projectId: process.env.SANITY_PROJECT_ID,
-      dataset: "production",
+      dataset: 'production',
       useCdn: false,
-      apiVersion: "2024-01-07",
+      apiVersion: '2024-01-07',
     }),
   ],
   adapter: vercel({
