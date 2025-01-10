@@ -219,7 +219,7 @@ export type ProjectDetail = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: 'project';
   };
-  usedTechnologies?: Array<{
+  image?: {
     asset?: {
       _ref: string;
       _type: 'reference';
@@ -230,21 +230,7 @@ export type ProjectDetail = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: 'imageAlt';
-    _key: string;
-  }>;
-  gallery?: Array<{
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'imageAlt';
-    _key: string;
-  }>;
+  };
   sections?: Array<
     {
       _key: string;
@@ -368,9 +354,34 @@ export type ProjectsQueryResult = Array<{
   orderRank: string | null;
 }>;
 // Variable: projectDetailQuery
-// Query: *[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,   parentProject-> {    _id,    name,description,"slug":slug.current,url,    year,    image{asset->{...,metadata}},    "imageAlt":image.alt,    tags[]-> {    _id,    name,    "value":value.current  },  },   sections,  }[0]
+// Query: *[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,    image{asset->{...,metadata}},    "imageAlt":image.alt,   parentProject-> {    _id,    name,description,"slug":slug.current,url,    year,    tags[]-> {    _id,    name,    "value":value.current  },  },   sections,  }[0]
 export type ProjectDetailQueryResult = {
   id: string;
+  image: {
+    asset: {
+      _id: string;
+      _type: 'sanity.imageAsset';
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+  } | null;
+  imageAlt: string | null;
   parentProject: {
     _id: string;
     name: string | null;
@@ -378,31 +389,6 @@ export type ProjectDetailQueryResult = {
     slug: string | null;
     url: string | null;
     year: string | null;
-    image: {
-      asset: {
-        _id: string;
-        _type: 'sanity.imageAsset';
-        _createdAt: string;
-        _updatedAt: string;
-        _rev: string;
-        originalFilename?: string;
-        label?: string;
-        title?: string;
-        description?: string;
-        altText?: string;
-        sha1hash?: string;
-        extension?: string;
-        mimeType?: string;
-        size?: number;
-        assetId?: string;
-        uploadId?: string;
-        path?: string;
-        url?: string;
-        metadata: SanityImageMetadata | null;
-        source?: SanityAssetSourceData;
-      } | null;
-    } | null;
-    imageAlt: string | null;
     tags: Array<{
       _id: string;
       name: string | null;
@@ -421,6 +407,6 @@ import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  "imageAlt":image.alt,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
-    '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    image{asset->{...,metadata}},\n    "imageAlt":image.alt,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
+    '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n    image{asset->{...,metadata}},\n    "imageAlt":image.alt,\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
   }
 }

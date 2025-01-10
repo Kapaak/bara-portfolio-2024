@@ -24,12 +24,12 @@ export async function getProjectDetailBySlug(
   projectSlug?: string
 ): Promise<SanityProjectDetail> {
   const projectDetailQuery = groq`*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,
+    image{asset->{...,metadata}},
+    "imageAlt":image.alt,
    parentProject-> {
     _id,
     name,description,"slug":slug.current,url,
     year,
-    image{asset->{...,metadata}},
-    "imageAlt":image.alt,
     tags[]-> {
     _id,
     name,

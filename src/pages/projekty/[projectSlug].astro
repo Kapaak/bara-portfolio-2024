@@ -19,10 +19,10 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
         <HeroSection
           name={projectDetail?.parentProject?.name}
           tags={projectDetail?.parentProject?.tags}
-          projectImage={projectDetail?.parentProject?.image
-            ? urlFor(projectDetail?.parentProject?.image)?.url()
+          projectImage={projectDetail?.image
+            ? urlFor(projectDetail?.image)?.url()
             : undefined}
-          imageAlt={projectDetail?.parentProject?.imageAlt}
+          imageAlt={projectDetail?.imageAlt ?? ''}
           year={projectDetail?.parentProject?.year}
         />
 
