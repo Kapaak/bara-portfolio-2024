@@ -1,11 +1,11 @@
 ---
-import { urlFor } from "@sanity/utils";
-import type { SanityProject } from "@types";
-import Tag from "@ui/components/Tag.astro";
-import { tailwindColorToIntent } from "@utils/tailwind";
-import { Image } from "astro:assets";
+import type { SanityProject } from '@domains';
+import { urlFor } from '@sanity/utils';
+import Tag from '@ui/components/Tag.astro';
+import { tailwindColorToIntent } from '@utils/tailwind';
+import { Image } from 'astro:assets';
 
-interface Props extends Partial<SanityProject>{
+interface Props extends Partial<SanityProject> {
   class?: string;
   detailUrl?: string | null;
 }
@@ -15,14 +15,14 @@ const {
   tags,
   image,
   detailUrl,
-  imageAlt = "",
-  tagColor = "background",
-  titleColor = "background",
-  class: className = "",
+  imageAlt = '',
+  tagColor = 'background',
+  titleColor = 'background',
+  class: className = '',
 } = Astro.props;
 ---
 
-<a href={detailUrl ? `/projekty/${detailUrl}` : ""} class={className}>
+<a href={detailUrl ? `/projekty/${detailUrl}` : ''} class={className}>
   <article
     class="group relative flex h-[33.3rem] gap-6 overflow-hidden text-clip rounded-small bg-[#D9D9D9] md:h-[42rem]"
   >
@@ -32,7 +32,7 @@ const {
           src={urlFor(image)?.url()}
           alt={imageAlt}
           width={image?.asset?.metadata?.dimensions?.width ?? 0}
-          height={image?.asset?.metadata?.dimensions?.height?? 0}
+          height={image?.asset?.metadata?.dimensions?.height ?? 0}
           loading="lazy"
           decoding="async"
           class="absolute size-full origin-bottom-left rounded-[inherit] object-cover transition-all duration-150 group-hover:scale-105"
@@ -46,8 +46,10 @@ const {
       {
         tags && (
           <div class="flex gap-5">
-            {tags.map((tag) => (
-              <Tag intent={tailwindColorToIntent(String(tagColor))}>{tag.name}</Tag>
+            {tags.map(tag => (
+              <Tag intent={tailwindColorToIntent(String(tagColor))}>
+                {tag.name}
+              </Tag>
             ))}
           </div>
         )
