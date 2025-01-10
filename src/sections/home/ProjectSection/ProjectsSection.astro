@@ -1,5 +1,6 @@
 ---
 import { getProjects } from '@sanity/api';
+import DecoratedText from '@ui/components/DecoratedText.astro';
 import Decoration from '@ui/components/Decoration.astro';
 import Headline from '@ui/components/Headline.astro';
 import IconButton from '@ui/components/IconButton.astro';
@@ -15,7 +16,7 @@ const projects = await getProjects();
 <section id="portfolio">
   <MaxWidth>
     <Headline intent="primary" class="mb-5 text-center lg:mb-12"
-      >Moje práce</Headline
+      ><DecoratedText>Moje práce</DecoratedText></Headline
     >
     <div class="relative flex flex-col gap-12">
       <Decoration>

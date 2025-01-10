@@ -1,5 +1,6 @@
 ---
-import MaxWidth from "@ui/components/MaxWidth.astro";
+import DecoratedText from '@ui/components/DecoratedText.astro';
+import MaxWidth from '@ui/components/MaxWidth.astro';
 ---
 
 <section class="background grid h-80 place-items-center">
@@ -7,7 +8,10 @@ import MaxWidth from "@ui/components/MaxWidth.astro";
     <h1
       class="text-center font-secondary text-[3.2rem] text-primary lg:text-h1"
     >
-      Každý vizuál má svůj příběh – ten váš bude jedinečný
+      <DecoratedText intent="needle">Každý</DecoratedText> vizuál má svůj <DecoratedText
+        intent="circle">příběh</DecoratedText
+      >
+      – ten váš <DecoratedText> bude jedinečný </DecoratedText>
     </h1>
   </MaxWidth>
 </section>

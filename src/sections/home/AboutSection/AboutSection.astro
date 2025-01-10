@@ -1,14 +1,17 @@
 ---
-import Headline from "@ui/components/Headline.astro";
-import MaxWidth from "@ui/components/MaxWidth.astro";
+import DecoratedText from '@ui/components/DecoratedText.astro';
+import Headline from '@ui/components/Headline.astro';
+import MaxWidth from '@ui/components/MaxWidth.astro';
 
-import AboutDecoration from "./parts/AboutDecoration.astro";
+import AboutDecoration from './parts/AboutDecoration.astro';
 ---
 
 <section id="o-mne">
   <MaxWidth size="small">
     <AboutDecoration>
-      <Headline intent="primary" class="mb-10 lg:mb-12">Kdo jsem</Headline>
+      <Headline intent="primary" class="mb-10 lg:mb-12"
+        ><DecoratedText>Kdo jsem</DecoratedText></Headline
+      >
       <div class="flex flex-col gap-4">
         <p>
           Jsem grafická designérka se zaměřením na <strong class="text-primary"

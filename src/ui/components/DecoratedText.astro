@@ -1,0 +1,92 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+// import circleSVG from '../../assets/hand-made/circle.svg?raw';
+// import decorationSVG from '../../assets/hand-made/decoration.svg?raw';
+// import underlineSVG from '../../assets/hand-made/underline.svg?raw';
+
+const decoratedText = cva('relative inline-flex', {
+  variants: {
+    intent: {
+      underline: ['decorated-text__underline'],
+      circle: ['decorated-text__circle'],
+      needle: ['decorated-text__needle'],
+    },
+  },
+});
+
+export interface Props
+  extends HTMLAttributes<'span'>,
+    VariantProps<typeof decoratedText> {}
+
+const { class: className, intent = 'underline' } = Astro.props;
+
+// const icon = {
+//   underline: underlineSVG,
+//   circle: circleSVG,
+//   needle: decorationSVG,
+// }[intent ?? 'underline'];
+
+// const iconClassName = {
+//   underline: 'decorated-text__underline',
+//   circle: 'decorated-text__circle',
+//   needle: 'decorated-text__needle',
+// }[intent ?? 'underline'];
+---
+
+<span class={decoratedText({ intent, className })}>
+  <!-- <Fragment set:html={icon} class={iconClassName} /> -->
+  <slot />
+</span>
+
+<style>
+  .decorated-text__underline {
+    &::before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      bottom: -1.8rem;
+      left: -3.1rem;
+      background-image: url('../../assets/hand-made/underline.svg');
+      background-repeat: no-repeat;
+      width: 140%;
+      height: 2.1rem;
+      background-size: contain;
+      max-width: 140%;
+      overflow: hidden;
+    }
+  }
+  .decorated-text__circle {
+    &::before {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform: translate(-45%, 80%);
+      background-image: url('../../assets/hand-made/circle.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      max-width: 130%;
+      width: 130%;
+      aspect-ratio: 2;
+      overflow: hidden;
+    }
+  }
+  .decorated-text__needle {
+    &::before {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-image: url('../../assets/hand-made/decoration.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 7rem;
+      height: 7rem;
+      transform: translate(-40%, 10%);
+    }
+  }
+</style>
