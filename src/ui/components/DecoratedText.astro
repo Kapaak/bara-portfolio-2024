@@ -7,13 +7,40 @@ import decorationSVG from '../../assets/hand-made/decoration.svg?raw';
 import underlineSVG from '../../assets/hand-made/underline.svg?raw';
 
 const decoratedText = cva(
-  ['absolute', 'inline-flex', 'object-contain', 'z-[-1]'],
+  ['absolute', 'inline-flex', 'items-center', 'object-contain', 'z-[-1]'],
   {
     variants: {
       intent: {
-        underline: ['decorated-text__underline'],
-        circle: ['decorated-text__circle'],
-        needle: ['decorated-text__needle', 'text-secondary'],
+        underline: [
+          'bottom-[-.8rem]',
+          '-left-6.5',
+          'max-w-full',
+          'md:bottom-[-1.1rem]',
+          'md:-left-7.5',
+          'lg:max-w-[150%]',
+        ],
+        circle: [
+          'bottom-1/2',
+          'left-1/2',
+          'translate-y-[70%]',
+          '-translate-x-1/2',
+          'max-w-[110%]',
+          'md:translate-x-[-42%]',
+          'md:translate-y-[80%]',
+          'md:max-w-[130%]',
+        ],
+        needle: [
+          'text-secondary',
+          'w-12',
+          'h-12',
+          'bottom-2',
+          '-left-6',
+          'md:w-16',
+          'md:h-16',
+          'md:bottom-0',
+          'md:left-0',
+          'md:translate-x-[-55%]',
+        ],
       },
     },
   }
@@ -38,24 +65,3 @@ const icon = {
   >
   <slot />
 </span>
-
-<style>
-  .decorated-text__underline {
-    bottom: -1.1rem;
-    left: -3rem;
-    max-width: 150%;
-  }
-  .decorated-text__circle {
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-45%, 80%);
-    max-width: 130%;
-  }
-  .decorated-text__needle {
-    width: 6.5rem;
-    height: 6.5rem;
-    bottom: 0;
-    left: 0;
-    transform: translate(-55%, 0);
-  }
-</style>
