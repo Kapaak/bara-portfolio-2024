@@ -1,9 +1,9 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 
-import curlyArrowSVG from "../../../../assets/hand-made/curly-arrow.svg";
-import faceSVG from "../../../../assets/hand-made/face.svg";
-import pencilSVG from "../../../../assets/hand-made/pencil.svg";
+import curlyArrowSVG from '../../../../assets/hand-made/curly-arrow.svg';
+import faceSVG from '../../../../assets/hand-made/face.svg';
+import pencilSVG from '../../../../assets/hand-made/pencil.svg';
 ---
 
 <div class="relative">
@@ -17,6 +17,7 @@ import pencilSVG from "../../../../assets/hand-made/pencil.svg";
     alt="Obličej"
     width="89"
     class="decoration-inversed absolute right-0 -translate-y-1/4"
+    loading="eager"
   />
   <Image
     src={faceSVG}

@@ -14,7 +14,11 @@ import Navigation from './parts/Navigation.astro';
     <div class="relative py-5">
       <div class="flex items-center justify-between">
         <a href="/">
-          <Image src={logoSVG} alt="Logo pro stránku Barbory Novákové" />
+          <Image
+            src={logoSVG}
+            alt="Logo pro stránku Barbory Novákové"
+            loading="eager"
+          />
         </a>
         <Navigation />
         <a href="#kontakt" class="hidden md:inline"
