@@ -55,7 +55,12 @@ const {
         )
       }
 
-      <h3 class={`text- max-w-[60%] text-body1 font-semibold${titleColor}`}>
+      <h3
+        class:list={[
+          'max-w-[60%] text-body1 font-semibold',
+          `text-${titleColor}`,
+        ]}
+      >
         {name}
       </h3>
     </div>
