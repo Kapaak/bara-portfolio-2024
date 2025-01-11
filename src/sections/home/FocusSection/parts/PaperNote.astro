@@ -1,7 +1,7 @@
 ---
 interface Props {
-  title?: string;
-  description?: string;
+  title?: string | null;
+  description?: string | null;
 }
 
 const { title, description }: Props = Astro.props;
@@ -18,7 +18,7 @@ const { title, description }: Props = Astro.props;
 
 <style>
   .paper-bg {
-    background-image: url("/src/assets/elements/paper-note-height.svg");
+    background-image: url('/src/assets/elements/paper-note-height.svg');
     background-repeat: no-repeat;
     background-size: cover;
   }

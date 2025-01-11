@@ -1,6 +1,14 @@
-import type { SanityProject, SanityProjectDetail } from '@domains';
+import type { SanityFocus, SanityProject, SanityProjectDetail } from '@domains';
 import groq from 'groq';
 import { sanityClient } from 'sanity:client';
+
+export async function getAuthorFocuses(): Promise<SanityFocus[]> {
+  const focusesQuery = groq`*[_type == "focus"]{name, description, orderRank}|order(orderRank)`;
+
+  const focuses: SanityFocus[] = await sanityClient.fetch(focusesQuery);
+
+  return focuses;
+}
 
 export async function getProjects(): Promise<SanityProject[]> {
   const projectsQuery = groq`*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,

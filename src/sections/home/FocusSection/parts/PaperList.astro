@@ -1,15 +1,19 @@
 ---
-import { focus } from "@constants/focus";
+import type { SanityFocus } from '@domains';
+
+interface Props {
+  authorFocuses: SanityFocus[];
+}
+
+const { authorFocuses } = Astro.props;
 ---
 
-<div
-  class="paper-bg relative flex flex-col gap-12.5 px-4 pb-12.5 pt-25"
->
+<div class="paper-bg relative flex flex-col gap-12.5 px-4 pb-12.5 pt-25">
   {
-    focus.map((item) => (
+    authorFocuses?.map(focus => (
       <div class="flex flex-col gap-4">
-        <h2 class="font-secondary text-[3.4rem]">{item.title}</h2>
-        <p>{item.description}</p>
+        <h2 class="font-secondary text-[3.4rem]">{focus?.name}</h2>
+        <p>{focus?.description}</p>
       </div>
     ))
   }
@@ -17,7 +21,7 @@ import { focus } from "@constants/focus";
 
 <style>
   .paper-bg {
-    background-image: url("/src/assets/elements/paper-note-height.svg");
+    background-image: url('/src/assets/elements/paper-note-height.svg');
     background-repeat: no-repeat;
     background-size: cover;
   }

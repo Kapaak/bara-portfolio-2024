@@ -207,6 +207,17 @@ export type Tag = {
   value?: Slug;
 };
 
+export type Focus = {
+  _id: string;
+  _type: 'focus';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  orderRank?: string;
+  name?: string;
+  description?: string;
+};
+
 export type ProjectDetail = {
   _id: string;
   _type: 'projectDetail';
@@ -306,12 +317,20 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata
   | Tag
+  | Focus
   | ProjectDetail
   | Project
   | ImageAlt
   | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../bara-portfolio-2024/src/sanity/api.ts
+// Variable: focusesQuery
+// Query: *[_type == "focus"]{name,description, orderRank,}|order(orderRank)
+export type FocusesQueryResult = Array<{
+  name: string | null;
+  description: string | null;
+  orderRank: string | null;
+}>;
 // Variable: projectsQuery
 // Query: *[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,   tags[]-> {    name,    "value":value.current  },  image{asset->{...,metadata}},  tagColor,  titleColor,  "imageAlt":image.alt,  orderRank,  }|order(orderRank)
 export type ProjectsQueryResult = Array<{
@@ -406,6 +425,7 @@ export type ProjectDetailQueryResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
+    '*[_type == "focus"]{name,description, orderRank,}|order(orderRank)': FocusesQueryResult;
     '*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  "imageAlt":image.alt,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
     '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n    image{asset->{...,metadata}},\n    "imageAlt":image.alt,\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
   }
