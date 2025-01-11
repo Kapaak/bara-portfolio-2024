@@ -1,18 +1,18 @@
 export const navigation = [
   {
-    title: "Domů",
-    href: "",
+    title: 'Domů',
+    href: '/',
   },
   {
-    title: "Kdo jsem?",
-    href: "#o-mne",
+    title: 'Kdo jsem?',
+    href: '#o-mne',
   },
   {
-    title: "Portfolio",
-    href: "#portfolio",
+    title: 'Portfolio',
+    href: '#portfolio',
   },
   {
-    title: "Kontakt",
-    href: "#kontakt",
+    title: 'Kontakt',
+    href: '#kontakt',
   },
 ];
