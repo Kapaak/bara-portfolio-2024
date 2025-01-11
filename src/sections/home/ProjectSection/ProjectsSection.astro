@@ -64,6 +64,8 @@ const projects = await getProjects();
 
     let isMobile = isMobileDevice();
 
+    let lastWidth = window.innerWidth;
+
     function updateProjectsVisibility() {
       isMobile = window.matchMedia('(max-width: 640px)').matches;
       const hasToggleButton = projects?.length > 3 && isMobile;
@@ -101,7 +103,13 @@ const projects = await getProjects();
       toggleButton.setAttribute('aria-pressed', String(!allProjectsVisible));
     }
 
-    window.addEventListener('resize', updateProjectsVisibility);
+    window.addEventListener('resize', () => {
+      const currentWidth = window.innerWidth;
+      if (currentWidth !== lastWidth) {
+        lastWidth = currentWidth;
+        updateProjectsVisibility();
+      }
+    });
     toggleButton?.addEventListener('click', toggleProjects);
 
     updateProjectsVisibility();
