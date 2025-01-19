@@ -5,6 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import circleSVG from '../../assets/hand-made/circle.svg?raw';
 import decorationSVG from '../../assets/hand-made/decoration.svg?raw';
 import underlineSVG from '../../assets/hand-made/underline.svg?raw';
+import wavyUnderlineSVG from '../../assets/hand-made/wavy-underline.svg?raw';
 
 const decoratedText = cva(
   ['absolute', 'inline-flex', 'items-center', 'object-contain', 'z-[-1]'],
@@ -17,6 +18,12 @@ const decoratedText = cva(
           'max-w-full',
           'md:bottom-[-1.1rem]',
           'md:-left-7.5',
+          'lg:max-w-[150%]',
+        ],
+        wavyUnderline: [
+          'bottom-[-.8rem]',
+          'max-w-full',
+          'bottom-[-2.1rem]',
           'lg:max-w-[150%]',
         ],
         circle: [
@@ -55,6 +62,7 @@ const icon = {
   underline: underlineSVG,
   circle: circleSVG,
   needle: decorationSVG,
+  wavyUnderline: wavyUnderlineSVG,
 }[intent ?? 'underline'];
 ---
 
