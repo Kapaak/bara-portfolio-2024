@@ -24,7 +24,7 @@ const {
 
 <a href={detailUrl ? `/projekty/${detailUrl}` : ''} class={className}>
   <article
-    class="group relative flex h-[33.3rem] gap-6 overflow-hidden text-clip rounded-small bg-[#D9D9D9] md:h-[42rem]"
+    class="group relative flex h-[33.3rem] gap-6 overflow-hidden text-clip rounded-small md:h-[42rem]"
   >
     {
       image && (
@@ -57,7 +57,7 @@ const {
 
       <h3
         class:list={[
-          'max-w-[60%] text-body1 font-semibold',
+          'max-w-[60%] text-body1 font-semibold mt-auto',
           `text-${titleColor}`,
         ]}
       >
