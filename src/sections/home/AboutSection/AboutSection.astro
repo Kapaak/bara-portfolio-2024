@@ -2,40 +2,44 @@
 import DecoratedText from '@ui/components/DecoratedText.astro';
 import Headline from '@ui/components/Headline.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
+import { Image } from 'astro:assets';
 
-import AboutDecoration from './parts/AboutDecoration.astro';
+import aboutImage from '../../../assets/hand-made/about.svg';
 ---
 
 <section id="o-mne">
   <MaxWidth>
-    <AboutDecoration>
-      <Headline class="mb-10 lg:mb-12"
-        ><DecoratedText intent="wavyUnderline">Kdo jsem</DecoratedText
-        ></Headline
-      >
-      <div class="flex flex-col gap-4">
-        <p>
-          Jsem grafická designérka se zaměřením na <strong
-            >tvorbu originálních vizuálů</strong
-          >. Pracovala jsem v marketingové agentuře, kde jsem se podílela na
-          kampaních pro různé značky a vytváření kompletních vizuálních identit.
-          Díky práci na různorodým projektech mám široký rozhled, který nyní
-          rozvíjím jako freelancer.
-        </p>
-        <p>
-          Při každém projektu kladu <strong>
-            důraz na detail, originalitu a funkčnost.</strong
-          > Pracuji s klienty individuálně a snažím se pochopit jejich potřeby i
-          vizi. Mým cílem je vytvářet vizuály, které nejen vyniknou na první pohled,
-          ale také dlouhodobě podpoří značku a její rozpoznatelnost.
-        </p>
-        <p>
-          Specializuji se na tvorbu vizuálních identit, návrhy log a webdesign.
-          Kromě toho se věnuji také print grafice – ráda navrhnu letáky,
-          vizitky, brožury nebo bannery, které budou nejen esteticky atraktivní,
-          ale také funkční a efektivní.
-        </p>
+    <div class="flex flex-col justify-between gap-17 md:flex-row">
+      <div>
+        <Headline class="mb-10 lg:mb-12"
+          ><DecoratedText intent="wavyUnderline">Kdo jsem</DecoratedText
+          ></Headline
+        >
+        <div class="flex flex-col gap-4">
+          <p>
+            Jsem grafická designérka se zaměřením na <strong
+              >tvorbu originálních vizuálů</strong
+            >. Pracovala jsem v marketingové agentuře, kde jsem se podílela na
+            kampaních pro různé značky a vytváření kompletních vizuálních
+            identit. Díky práci na různorodým projektech mám široký rozhled,
+            který nyní rozvíjím jako freelancer.
+          </p>
+          <p>
+            Při každém projektu kladu <strong>
+              důraz na detail, originalitu a funkčnost.</strong
+            > Pracuji s klienty individuálně a snažím se pochopit jejich potřeby
+            i vizi. Mým cílem je vytvářet vizuály, které nejen vyniknou na první
+            pohled, ale také dlouhodobě podpoří značku a její rozpoznatelnost.
+          </p>
+          <p>
+            Specializuji se na tvorbu vizuálních identit, návrhy log a
+            webdesign. Kromě toho se věnuji také print grafice – ráda navrhnu
+            letáky, vizitky, brožury nebo bannery, které budou nejen esteticky
+            atraktivní, ale také funkční a efektivní.
+          </p>
+        </div>
       </div>
-    </AboutDecoration>
+      <Image src={aboutImage} alt="about me" class="max-w-[30rem]" />
+    </div>
   </MaxWidth>
 </section>
