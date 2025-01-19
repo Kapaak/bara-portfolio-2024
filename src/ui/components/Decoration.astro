@@ -1,18 +1,16 @@
 ---
-import { Image } from "astro:assets";
-
-import decorationSVG from "../../assets/hand-made/decoration.svg";
+import decorationSVG from '../../assets/hand-made/decoration.svg?raw';
 ---
 
 <div>
-  <div class="decoration absolute -left-15 top-[-3.5rem] z-10">
-    <Image width="77" height="47" src={decorationSVG} alt="Dekorace" />
+  <div class="decoration absolute -left-15 top-[-3.5rem] z-10 text-secondary">
+    <Fragment set:html={decorationSVG} />
   </div>
   <slot />
   <div
-    class="decoration absolute bottom-[-4.5rem] right-[-5.5rem] z-10 rotate-180 xl:block"
+    class="decoration absolute bottom-[-4.5rem] right-[-5.5rem] z-10 rotate-180 text-secondary xl:block"
   >
-    <Image width="77" height="47" src={decorationSVG} alt="Dekorace" />
+    <Fragment set:html={decorationSVG} />
   </div>
 </div>
 
