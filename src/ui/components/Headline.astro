@@ -1,5 +1,5 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes, HTMLTag } from 'astro/types';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const headline = cva('headline', {
@@ -18,12 +18,21 @@ const headline = cva('headline', {
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<'div'>, 'disabled'>,
-    VariantProps<typeof headline> {}
+  extends HTMLAttributes<'h2'>,
+    VariantProps<typeof headline> {
+  tag?: HTMLTag;
+}
 
-const { class: className, intent = 'default', size = 'regular' } = Astro.props;
+const {
+  class: className,
+  intent = 'default',
+  size = 'regular',
+  tag = 'h2',
+} = Astro.props;
+
+const Element = tag;
 ---
 
-<h2 class={headline({ size, intent, className })}>
+<Element class={headline({ size, intent, className })}>
   <slot />
-</h2>
+</Element>
