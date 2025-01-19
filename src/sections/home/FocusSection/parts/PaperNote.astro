@@ -8,18 +8,55 @@ const { title, description }: Props = Astro.props;
 ---
 
 <div
-  class="paper-bg relative flex-1 rotate-2 px-6 pb-12.5 pt-17.5 transition-transform hover:rotate-0"
+  class="paper-max-width relative w-full rotate-2 px-6 pb-12.5 pt-10 transition-transform hover:rotate-0"
 >
+  <div class="paper-svg absolute left-0 top-0 z-negative size-full">
+    <!-- <Fragment set:html={paperNoteSVG} /> -->
+    <img
+      src="/src/assets/elements/paper-note-height.svg"
+      alt="Papírová poznámka"
+      class="paper-height"
+    />
+    <img
+      src="/src/assets/elements/paper-note-width.svg"
+      alt="Papírová poznámka"
+      class="paper-width"
+    />
+  </div>
   <h2 class="font-secondary text-[3.4rem]">{title}</h2>
-  <p>
+  <p class="max-w-[88%]">
     {description}
   </p>
 </div>
 
 <style>
-  .paper-bg {
-    background-image: url('/src/assets/elements/paper-note-height.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
+  .paper-max-width {
+    @media (min-width: 1023px) {
+      max-width: 36rem;
+    }
+  }
+  .paper-height {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    @media (min-width: 460px) {
+      display: none;
+    }
+    @media (min-width: 1023px) {
+      display: block;
+    }
+  }
+  .paper-width {
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    @media (min-width: 460px) {
+      display: block;
+    }
+    @media (min-width: 1023px) {
+      display: none;
+    }
   }
 </style>

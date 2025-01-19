@@ -2,20 +2,15 @@
 import { getAuthorFocuses } from '@sanity/api';
 import MaxWidth from '@ui/components/MaxWidth.astro';
 
-import PaperList from './parts/PaperList.astro';
 import PaperNote from './parts/PaperNote.astro';
 
 const focuses = await getAuthorFocuses();
 ---
 
 <section>
-  <MaxWidth removeMobilePadding>
-    <div class="sm:hidden">
-      <PaperList authorFocuses={focuses} />
-    </div>
-
+  <MaxWidth>
     <div
-      class="mx-auto hidden flex-col gap-6 sm:flex sm:max-w-[55rem] lg:max-w-full lg:flex-row lg:gap-10"
+      class="mx-auto flex flex-wrap justify-center sm:max-w-[55rem] md:gap-6 lg:max-w-full lg:flex-row lg:gap-10"
     >
       {
         focuses?.map(focus => (
