@@ -1,27 +1,27 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { cva, type VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from 'astro/types';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-const headline = cva("headline", {
+const headline = cva('headline', {
   variants: {
     intent: {
-      default: ["text-black"],
-      white: ["text-background"],
-      primary: ["text-primary"],
-      secondary: ["text-secondary"],
+      default: ['text-black'],
+      white: ['text-background'],
+      primary: ['text-primary'],
+      secondary: ['text-secondary'],
     },
     size: {
-      small: ["text-h3", "font-semibold"],
-      regular: ["text-h2", "font-medium"],
+      small: ['text-h4', 'font-medium'],
+      regular: ['text-h2', 'font-medium'],
     },
   },
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<"div">, "disabled">,
+  extends Omit<HTMLAttributes<'div'>, 'disabled'>,
     VariantProps<typeof headline> {}
 
-const { class: className, intent = "default", size = "regular" } = Astro.props;
+const { class: className, intent = 'default', size = 'regular' } = Astro.props;
 ---
 
 <h2 class={headline({ size, intent, className })}>

@@ -19,12 +19,10 @@ const { name, tags, projectImage, year } = Astro.props;
 
 <section class="pt-10">
   <div class="flex flex-col gap-3">
-    <Headline intent="primary">
+    <Headline>
       {name}
     </Headline>
-    <div
-      class:list={['relative h-auto+', !projectImage?.src && 'bg-[#D9D9D9]']}
-    >
+    <div class:list={['relative h-auto', !projectImage?.src && 'bg-[#D9D9D9]']}>
       {
         projectImage?.src && (
           <Image

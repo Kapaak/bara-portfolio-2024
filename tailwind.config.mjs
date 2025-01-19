@@ -7,18 +7,18 @@ function calculateRem(pxValue, baseFontSize = 10) {
 }
 
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
-        primary: "#5938E0",
-        secondary: "#FF5700",
-        tetriary: "#B9EFBB",
-        background: "#F4EBE4",
+        primary: '#5938E0',
+        secondary: '#FF5700',
+        tetriary: '#B9EFBB',
+        background: '#F4EBE4',
       },
       fontFamily: {
-        primary: ["Garnett", "sans-serif"],
-        secondary: ["Salted", "sans-serif"],
+        primary: ['Garnett', 'sans-serif'],
+        secondary: ['Salted', 'sans-serif'],
       },
       fontSize: {
         h1: [
@@ -37,6 +37,12 @@ export default {
           calculateRem(16),
           {
             lineHeight: calculateRem(24),
+          },
+        ],
+        h4: [
+          calculateRem(30),
+          {
+            lineHeight: calculateRem(30),
           },
         ],
         body1: [
@@ -64,25 +70,25 @@ export default {
       },
       spacing: () => ({
         ...Array.from({ length: 96 }, (_, index) => index * 0.5)
-          .filter((i) => i)
+          .filter(i => i)
           .reduce(
             (acc, i) => ({ ...acc, [i]: `${i / (baseFontSize / 4)}rem` }),
             {}
           ),
       }),
       zIndex: {
-        negative: "-1",
+        negative: '-1',
       },
       boxShadow: {
-        regular: "0 0 50px 0 rgba(0, 0, 0, 0.1)",
+        regular: '0 0 50px 0 rgba(0, 0, 0, 0.1)',
       },
       maxWidth: {
-        small: "87rem",
-        regular: "132rem",
+        small: '87rem',
+        regular: '132rem',
       },
       gridTemplateColumns: {
-        small: "repeat(auto-fill, minmax(33rem, 42rem))",
-        regular: "repeat(auto-fill, minmax(35rem, 1fr))",
+        small: 'repeat(auto-fill, minmax(33rem, 42rem))',
+        regular: 'repeat(auto-fill, minmax(35rem, 1fr))',
       },
     },
   },

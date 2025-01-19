@@ -13,12 +13,10 @@ const { projectDescriptions } = Astro.props;
 <section>
   <div class="mb-15 flex flex-col gap-15 lg:mb-20 lg:gap-20">
     {
-      projectDescriptions?.map((section) => (
+      projectDescriptions?.map(section => (
         <section>
           <div class="flex flex-col gap-5">
-            <Headline size="small" intent="primary">
-              {section?.title}
-            </Headline>
+            <Headline size="small">{section?.title}</Headline>
             <PortableText portableText={section?.richText} />
           </div>
         </section>
