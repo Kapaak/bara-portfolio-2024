@@ -1,0 +1,32 @@
+---
+import type { SanityProjectDetail } from '@domains';
+import { urlFor } from '@sanity/utils';
+import { Image } from 'astro:assets';
+
+interface Props {
+  gallery?: SanityProjectDetail['gallery'];
+}
+
+const { gallery } = Astro.props;
+---
+
+<section>
+  <div class="flex w-full flex-col gap-6">
+    {
+      gallery &&
+        gallery?.map(
+          galleryItem =>
+            galleryItem?.image && (
+              <Image
+                src={urlFor(galleryItem.image).url()}
+                alt={galleryItem.image?.altText ?? ''}
+                width={galleryItem.image?.metadata?.dimensions?.width ?? 0}
+                height={galleryItem.image?.metadata?.dimensions?.height ?? 0}
+                loading="lazy"
+                decoding="async"
+              />
+            )
+        )
+    }
+  </div>
+</section>

@@ -1,10 +1,9 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import { getProjectDetailBySlug } from '@sanity/api';
-import { urlFor } from '@sanity/utils';
+import GallerySection from '@sections/project-detail/GallerySection.astro';
 import HeroSection from '@sections/project-detail/HeroSection.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
-import { Image } from 'astro:assets';
 
 const { projectSlug } = Astro.params;
 
@@ -14,7 +13,7 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
 <Layout title={projectDetail?.parentProject?.name}>
   <main>
     <MaxWidth>
-      <div
+      <acticle
         class="grid gap-7 pb-10 pt-14 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[auto,1fr]"
       >
         <HeroSection
@@ -25,29 +24,8 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
           projectPoints={projectDetail?.sections}
         />
 
-        <div class="flex w-full flex-col gap-6">
-          {
-            projectDetail?.gallery &&
-              projectDetail?.gallery?.map(
-                galleryItem =>
-                  galleryItem?.image && (
-                    <Image
-                      src={urlFor(galleryItem.image).url()}
-                      alt={galleryItem.image?.altText ?? ''}
-                      width={
-                        galleryItem.image?.metadata?.dimensions?.width ?? 0
-                      }
-                      height={
-                        galleryItem.image?.metadata?.dimensions?.height ?? 0
-                      }
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )
-              )
-          }
-        </div>
-      </div>
+        <GallerySection gallery={projectDetail?.gallery} />
+      </acticle>
     </MaxWidth>
   </main>
 </Layout>
