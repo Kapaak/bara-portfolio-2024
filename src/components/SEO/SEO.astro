@@ -1,0 +1,49 @@
+---
+import { SEO as AstroSEO } from 'astro-seo';
+
+interface Props {
+  title?: string | null;
+}
+
+const { title } = Astro.props;
+
+const fullTitle = title ? `BN | ${title}` : 'Barbora Nováková';
+const keywords = [
+  'grafický design',
+  'ilustrace',
+  'branding',
+  'vizuální identita',
+  'tvorba loga',
+  'návrh loga',
+  'firemní identita',
+  'corporate identity',
+  'webdesign',
+  'návrh webu',
+  'UX/UI design',
+  'digitální design',
+  'návrh loga na míru',
+  'tvorba vizuální identity',
+  'návrh firemní identity',
+  'design manuál',
+  'redesign loga',
+  'profesionální webdesign',
+  'návrh webových stránek',
+  'UX a UI design na míru',
+  'grafický návrh tiskovin',
+  'návrh letáků a brožur',
+  'tvorba vizitek',
+  'návrh bannerů',
+  'reklamní grafika',
+  'print design',
+  'Jak vytvořit profesionální logo pro firmu',
+  'Kolik stojí návrh vizuální identity',
+  'Nejlepší webdesign pro malé firmy',
+];
+---
+
+<meta name="author" content="Barbora Nováková" />
+<meta name="keywords" content={keywords.join(',')} />
+<AstroSEO
+  title={fullTitle}
+  description="Barbora Nováková – grafická designérka a ilustrátorka."
+/>
