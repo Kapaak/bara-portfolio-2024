@@ -9,7 +9,7 @@ import aboutImage from '../../../assets/hand-made/about.svg';
 
 <section id="o-mne">
   <MaxWidth>
-    <div class="flex flex-col justify-between gap-17 md:flex-row">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:gap-17">
       <div>
         <Headline class="mb-10 lg:mb-12"
           ><DecoratedText intent="wavyUnderline">Kdo jsem</DecoratedText
@@ -39,7 +39,11 @@ import aboutImage from '../../../assets/hand-made/about.svg';
           </p>
         </div>
       </div>
-      <Image src={aboutImage} alt="about me" class="max-w-[30rem]" />
+      <Image
+        src={aboutImage}
+        alt="about me"
+        class="max-w-80 self-center md:max-w-[30rem]"
+      />
     </div>
   </MaxWidth>
 </section>
