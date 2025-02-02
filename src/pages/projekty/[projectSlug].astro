@@ -3,7 +3,9 @@ import Layout from '@layouts/Layout.astro';
 import { getProjectDetailBySlug } from '@sanity/api';
 import GallerySection from '@sections/project-detail/GallerySection.astro';
 import HeroSection from '@sections/project-detail/HeroSection.astro';
+import Headline from '@ui/components/Headline.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
+import Tag from '@ui/components/Tag.astro';
 
 const { projectSlug } = Astro.params;
 
@@ -13,8 +15,25 @@ const projectDetail = await getProjectDetailBySlug(projectSlug);
 <Layout title={projectDetail?.parentProject?.name}>
   <main>
     <MaxWidth>
+      <div class="flex flex-wrap items-end justify-between gap-2 pb-7.5 pt-14">
+        <Headline tag="h1">
+          {projectDetail?.parentProject?.name}
+        </Headline>
+
+        {
+          (projectDetail?.parentProject?.tags ?? []).length > 0 && (
+            <ul class="flex gap-2">
+              {projectDetail?.parentProject?.tags?.map(tag => (
+                <li>
+                  <Tag intent="primary">{tag?.name}</Tag>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
       <acticle
-        class="grid gap-7 pb-10 pt-14 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[auto,1fr]"
+        class="grid gap-7 pb-10 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[auto,1fr]"
       >
         <HeroSection
           name={projectDetail?.parentProject?.name}

@@ -1,26 +1,26 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { Image } from "astro:assets";
-import { cva, type VariantProps } from "class-variance-authority";
+import type { HTMLAttributes } from 'astro/types';
+import { Image } from 'astro:assets';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-import hashtag from "../../assets/hand-made/hashtag.svg";
+import hashtag from '../../assets/hand-made/hashtag.svg';
 
-const tag = cva(["flex", "shrink-0", "gap-[.2rem]"], {
+const tag = cva(['flex', 'text-body3', 'shrink-0', 'gap-[.2rem]'], {
   variants: {
     intent: {
-      default: ["text-black"],
-      white: ["text-background"],
-      primary: ["text-primary"],
-      secondary: ["text-secondary"],
+      default: ['text-black'],
+      white: ['text-background'],
+      primary: ['text-primary'],
+      secondary: ['text-secondary'],
     },
   },
 });
 
 export interface Props
-  extends Omit<HTMLAttributes<"div">, "disabled">,
+  extends Omit<HTMLAttributes<'div'>, 'disabled'>,
     VariantProps<typeof tag> {}
 
-const { class: className, intent = "default" } = Astro.props;
+const { class: className, intent = 'default' } = Astro.props;
 ---
 
 <div class={tag({ intent, className })}>
