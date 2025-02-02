@@ -1,56 +1,48 @@
 ---
-import type { SanityProjectDetail } from '@domains';
+import PortableText from '@components/PortableText/PortableText.astro';
+import type { SanityBlockContentObject, SanityProjectDetail } from '@domains';
 import Headline from '@ui/components/Headline.astro';
 import Tag from '@ui/components/Tag.astro';
-import { Image } from 'astro:assets';
 
 interface Props
   extends Partial<NonNullable<SanityProjectDetail['parentProject']>> {
-  projectImage: {
-    src?: string;
-    alt: string;
-    height: number;
-    width: number;
-  };
+  projectPoints: Array<SanityBlockContentObject> | null;
 }
 
-const { name, tags, projectImage, year } = Astro.props;
+const { name, tags, description, projectPoints } = Astro.props;
 ---
 
-<section class="pt-10">
-  <div class="flex flex-col gap-3">
+<section class="md:max-w-2xl">
+  <div class="sticky top-40 flex flex-col gap-3">
     <Headline tag="h1">
       {name}
     </Headline>
-    <div class:list={['relative h-auto', !projectImage?.src && 'bg-[#D9D9D9]']}>
-      {
-        projectImage?.src && (
-          <Image
-            src={projectImage.src}
-            width={projectImage.width}
-            height={projectImage.height}
-            alt={projectImage.alt}
-            class="size-full max-h-full object-cover"
-            sizes="(max-width: 822px) 90vw, 822px"
-          />
-        )
-      }
+
+    {
+      (tags ?? []).length > 0 && (
+        <ul class="flex gap-2">
+          {tags?.map(tag => (
+            <li>
+              <Tag intent="primary">{tag?.name}</Tag>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="flex flex-col gap-2">
+      <PortableText portableText={description} />
     </div>
 
-    <div class="flex items-center justify-between">
+    <div class="mt-8 flex flex-col gap-6">
       {
-        (tags ?? []).length > 0 && (
-          <ul class="flex gap-2">
-            {tags?.map(tag => (
-              <li>
-                <Tag intent="primary">{tag?.name}</Tag>
-              </li>
-            ))}
-          </ul>
-        )
+        projectPoints?.map(point => (
+          <div class="flex flex-col gap-2">
+            <Headline size="small">{point?.title}</Headline>
+            <PortableText portableText={point?.richText} />
+          </div>
+        ))
       }
-
-      <strong>{year}</strong>
     </div>
   </div>
 </section>

@@ -2,39 +2,51 @@
 import Layout from '@layouts/Layout.astro';
 import { getProjectDetailBySlug } from '@sanity/api';
 import { urlFor } from '@sanity/utils';
-import AboutProjectSection from '@sections/project-detail/AboutProjectSection.astro';
-import DescriptionSection from '@sections/project-detail/DescriptionSection.astro';
 import HeroSection from '@sections/project-detail/HeroSection.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
+import { Image } from 'astro:assets';
 
 const { projectSlug } = Astro.params;
 
 const projectDetail = await getProjectDetailBySlug(projectSlug);
-
-const projectImage = {
-  src: projectDetail?.image ? urlFor(projectDetail?.image).url() : undefined,
-  alt: projectDetail?.imageAlt ?? '',
-  height: projectDetail?.image?.asset?.metadata?.dimensions?.height ?? 0,
-  width: projectDetail?.image?.asset?.metadata?.dimensions?.width ?? 0,
-};
 ---
 
 <Layout title={projectDetail?.parentProject?.name}>
   <main>
-    <MaxWidth size="small">
-      <div class="mb-15 flex flex-col gap-15 lg:mb-20 lg:gap-20">
+    <MaxWidth>
+      <div
+        class="grid gap-7 pb-10 pt-14 md:grid-cols-[1fr,1.5fr] lg:grid-cols-[auto,1fr]"
+      >
         <HeroSection
           name={projectDetail?.parentProject?.name}
           tags={projectDetail?.parentProject?.tags}
-          projectImage={projectImage}
-          year={projectDetail?.parentProject?.year}
-        />
-
-        <DescriptionSection
           description={projectDetail?.parentProject?.description}
+          year={projectDetail?.parentProject?.year}
+          projectPoints={projectDetail?.sections}
         />
 
-        <AboutProjectSection projectDescriptions={projectDetail?.sections} />
+        <div class="flex w-full flex-col gap-6">
+          {
+            projectDetail?.gallery &&
+              projectDetail?.gallery?.map(
+                galleryItem =>
+                  galleryItem?.image && (
+                    <Image
+                      src={urlFor(galleryItem.image).url()}
+                      alt={galleryItem.image?.altText ?? ''}
+                      width={
+                        galleryItem.image?.metadata?.dimensions?.width ?? 0
+                      }
+                      height={
+                        galleryItem.image?.metadata?.dimensions?.height ?? 0
+                      }
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )
+              )
+          }
+        </div>
       </div>
     </MaxWidth>
   </main>

@@ -99,8 +99,7 @@ export type BlockContentObject = {
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
-        alt?: string;
-        _type: 'imageAlt';
+        _type: 'image';
         _key: string;
       }
   >;
@@ -134,11 +133,96 @@ export type BlockContent = Array<
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      alt?: string;
-      _type: 'imageAlt';
+      _type: 'image';
       _key: string;
     }
 >;
+
+export type Tag = {
+  _id: string;
+  _type: 'tag';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  value?: Slug;
+};
+
+export type Focus = {
+  _id: string;
+  _type: 'focus';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  orderRank?: string;
+  name?: string;
+  description?: string;
+};
+
+export type ProjectDetail = {
+  _id: string;
+  _type: 'projectDetail';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  parentProject?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'project';
+  };
+  sections?: Array<
+    {
+      _key: string;
+    } & BlockContentObject
+  >;
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+    _key: string;
+  }>;
+};
+
+export type Project = {
+  _id: string;
+  _type: 'project';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  orderRank?: string;
+  name?: string;
+  description?: BlockContent;
+  slug?: Slug;
+  year?: string;
+  url?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: 'reference';
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  tags?: Array<{
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: 'tag';
+  }>;
+  tagColor?: 'primary' | 'black' | 'background';
+  titleColor?: 'primary' | 'black' | 'background';
+};
 
 export type SanityImageCrop = {
   _type: 'sanity.imageCrop';
@@ -197,104 +281,13 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Tag = {
+export type MediaTag = {
   _id: string;
-  _type: 'tag';
+  _type: 'media.tag';
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  value?: Slug;
-};
-
-export type Focus = {
-  _id: string;
-  _type: 'focus';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  orderRank?: string;
-  name?: string;
-  description?: string;
-};
-
-export type ProjectDetail = {
-  _id: string;
-  _type: 'projectDetail';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  parentProject?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'project';
-  };
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'imageAlt';
-  };
-  sections?: Array<
-    {
-      _key: string;
-    } & BlockContentObject
-  >;
-};
-
-export type Project = {
-  _id: string;
-  _type: 'project';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  orderRank?: string;
-  name?: string;
-  description?: BlockContent;
-  slug?: Slug;
-  year?: string;
-  url?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: 'imageAlt';
-  };
-  tags?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'tag';
-  }>;
-  tagColor?: 'primary' | 'black' | 'background';
-  titleColor?: 'primary' | 'black' | 'background';
-};
-
-export type ImageAlt = {
-  _type: 'imageAlt';
-  asset?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-  };
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
+  name?: Slug;
 };
 
 export type Slug = {
@@ -311,28 +304,28 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | BlockContentObject
   | BlockContent
+  | Tag
+  | Focus
+  | ProjectDetail
+  | Project
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Tag
-  | Focus
-  | ProjectDetail
-  | Project
-  | ImageAlt
+  | MediaTag
   | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../bara-portfolio-2024/src/sanity/api.ts
 // Variable: focusesQuery
-// Query: *[_type == "focus"]{name,description, orderRank,}|order(orderRank)
+// Query: *[_type == "focus"]{name, description, orderRank}|order(orderRank)
 export type FocusesQueryResult = Array<{
   name: string | null;
   description: string | null;
   orderRank: string | null;
 }>;
 // Variable: projectsQuery
-// Query: *[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,   tags[]-> {    name,    "value":value.current  },  image{asset->{...,metadata}},  tagColor,  titleColor,  "imageAlt":image.alt,  orderRank,  }|order(orderRank)
+// Query: *[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,   tags[]-> {    name,    "value":value.current  },  image{asset->{...,metadata}},  tagColor,  titleColor,  orderRank,  }|order(orderRank)
 export type ProjectsQueryResult = Array<{
   id: string;
   name: string | null;
@@ -369,15 +362,14 @@ export type ProjectsQueryResult = Array<{
   } | null;
   tagColor: 'background' | 'black' | 'primary' | null;
   titleColor: 'background' | 'black' | 'primary' | null;
-  imageAlt: string | null;
   orderRank: string | null;
 }>;
 // Variable: projectDetailQuery
-// Query: *[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,    image{asset->{...,metadata}},    "imageAlt":image.alt,   parentProject-> {    _id,    name,description,"slug":slug.current,url,    year,    tags[]-> {    _id,    name,    "value":value.current  },  },   sections,  }[0]
+// Query: *[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,  gallery[]{"image":asset->{...,metadata}},   parentProject-> {    _id,    name,description,"slug":slug.current,url,    year,    tags[]-> {    _id,    name,    "value":value.current  },  },   sections,  }[0]
 export type ProjectDetailQueryResult = {
   id: string;
-  image: {
-    asset: {
+  gallery: Array<{
+    image: {
       _id: string;
       _type: 'sanity.imageAsset';
       _createdAt: string;
@@ -399,8 +391,7 @@ export type ProjectDetailQueryResult = {
       metadata: SanityImageMetadata | null;
       source?: SanityAssetSourceData;
     } | null;
-  } | null;
-  imageAlt: string | null;
+  }> | null;
   parentProject: {
     _id: string;
     name: string | null;
@@ -425,8 +416,8 @@ export type ProjectDetailQueryResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type == "focus"]{name,description, orderRank,}|order(orderRank)': FocusesQueryResult;
-    '*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  "imageAlt":image.alt,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
-    '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n    image{asset->{...,metadata}},\n    "imageAlt":image.alt,\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
+    '*[_type == "focus"]{name, description, orderRank}|order(orderRank)': FocusesQueryResult;
+    '*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
+    '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n  gallery[]{"image":asset->{...,metadata}},\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
   }
 }

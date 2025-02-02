@@ -19,7 +19,6 @@ export async function getProjects(): Promise<SanityProject[]> {
   image{asset->{...,metadata}},
   tagColor,
   titleColor,
-  "imageAlt":image.alt,
   orderRank,
   }|order(orderRank)`;
 
@@ -32,8 +31,7 @@ export async function getProjectDetailBySlug(
   projectSlug?: string
 ): Promise<SanityProjectDetail> {
   const projectDetailQuery = groq`*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,
-    image{asset->{...,metadata}},
-    "imageAlt":image.alt,
+  gallery[]{"image":asset->{...,metadata}},
    parentProject-> {
     _id,
     name,description,"slug":slug.current,url,
