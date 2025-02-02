@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+
+import paperHeightSVG from '../../../../assets/elements/paper-note-height.svg';
+import paperWidthSVG from '../../../../assets/elements/paper-note-width.svg';
+
 interface Props {
   title?: string | null;
   description?: string | null;
@@ -11,17 +16,8 @@ const { title, description }: Props = Astro.props;
   class="paper-max-width relative w-full rotate-2 px-6 pb-12.5 pt-10 transition-transform lg:hover:rotate-0"
 >
   <div class="paper-svg absolute left-0 top-0 z-negative size-full">
-    <!-- <Fragment set:html={paperNoteSVG} /> -->
-    <img
-      src="/elements/paper-note-height.svg"
-      alt="Papírová poznámka"
-      class="paper-height"
-    />
-    <img
-      src="/elements/paper-note-width.svg"
-      alt="Papírová poznámka"
-      class="paper-width"
-    />
+    <Image src={paperHeightSVG} alt="Papírová poznámka" class="paper-height" />
+    <Image src={paperWidthSVG} alt="Papírová poznámka" class="paper-width" />
   </div>
   <h2 class="font-secondary text-[3.4rem]">{title}</h2>
   <p class="max-w-[88%]">
