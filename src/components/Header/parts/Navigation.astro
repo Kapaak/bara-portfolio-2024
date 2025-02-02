@@ -1,12 +1,11 @@
 ---
-import { navigation } from "@constants/navigation";
-import { Image } from "astro:assets";
+import { navigation } from '@constants/navigation';
+import { Image } from 'astro:assets';
 
-import closeSVG from "../../../assets/hand-made/close.svg";
-import hamburgerSVG from "../../../assets/hand-made/hamburger.svg";
+import closeSVG from '../../../assets/hand-made/close.svg';
+import hamburgerSVG from '../../../assets/hand-made/hamburger.svg';
 
-import ExternalLinks from "./ExternalLinks.astro";
-
+import ExternalLinks from './ExternalLinks.astro';
 ---
 
 <style>
@@ -28,11 +27,11 @@ import ExternalLinks from "./ExternalLinks.astro";
   <ExternalLinks class="hidden gap-6 md:flex" />
 
   <div
-    class="nav-links absolute bottom-0 left-0 w-full translate-y-full bg-background px-4 pb-[3.5rem] pt-[2.5rem] text-center shadow-regular"
+    class="nav-links absolute bottom-0 left-0 w-full translate-y-full px-4 pb-[3.5rem] pt-[2.5rem] text-center shadow-regular"
   >
     <ul class="flex flex-col gap-7.5 font-secondary text-body1">
       {
-        navigation.map((navItem) => (
+        navigation.map(navItem => (
           <li class="flex">
             <a class="w-full" href={navItem.href}>
               {navItem.title}
@@ -52,33 +51,33 @@ import ExternalLinks from "./ExternalLinks.astro";
 </nav>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const hamburger = document.querySelector(".hamburger-button");
-    const navLinksParent = document.querySelector(".nav-links");
-    const navLinks = document.querySelectorAll(".nav-links ul li");
+  document.addEventListener('astro:page-load', () => {
+    const hamburger = document.querySelector('.hamburger-button');
+    const navLinksParent = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links ul li');
 
     const reset = () => {
-      navLinksParent?.classList.remove("show");
-      hamburger?.firstElementChild?.classList.remove("hidden");
-      hamburger?.lastElementChild?.classList.add("hidden");
+      navLinksParent?.classList.remove('show');
+      hamburger?.firstElementChild?.classList.remove('hidden');
+      hamburger?.lastElementChild?.classList.add('hidden');
     };
 
-    navLinks?.forEach((navLink) => {
-      navLink.addEventListener("click", reset);
+    navLinks?.forEach(navLink => {
+      navLink.addEventListener('click', reset);
     });
 
-    hamburger?.addEventListener("click", () => {
-      navLinksParent?.classList.toggle("show");
+    hamburger?.addEventListener('click', () => {
+      navLinksParent?.classList.toggle('show');
 
-      if (navLinksParent?.classList?.contains("show")) {
-        hamburger?.firstElementChild?.classList.add("hidden");
-        hamburger?.lastElementChild?.classList.toggle("hidden");
+      if (navLinksParent?.classList?.contains('show')) {
+        hamburger?.firstElementChild?.classList.add('hidden');
+        hamburger?.lastElementChild?.classList.toggle('hidden');
       } else {
-        hamburger?.lastElementChild?.classList.add("hidden");
-        hamburger?.firstElementChild?.classList.toggle("hidden");
+        hamburger?.lastElementChild?.classList.add('hidden');
+        hamburger?.firstElementChild?.classList.toggle('hidden');
       }
     });
 
-    window.addEventListener("resize", reset);
+    window.addEventListener('resize', reset);
   });
 </script>

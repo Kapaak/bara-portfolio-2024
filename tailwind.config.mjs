@@ -14,7 +14,7 @@ export default {
         primary: '#5938E0',
         secondary: '#FF5700',
         tetriary: '#B9EFBB',
-        background: '#F4EBE4',
+        background: '#FAF4F0',
       },
       fontFamily: {
         primary: ['Garnett', 'sans-serif'],

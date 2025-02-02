@@ -6,8 +6,6 @@
   html {
     font-size: 62.5%;
     scroll-behavior: smooth;
-    background-image: url('/noise.png');
-    background-color: rgb(244 235 228 / var(--tw-bg-opacity, 1));
   }
 
   body {
