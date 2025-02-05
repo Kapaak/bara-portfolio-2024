@@ -6,8 +6,8 @@ import { cva } from 'class-variance-authority';
 const button = cva(['border', 'rounded-[10rem]', 'transition-colors'], {
   variants: {
     intent: {
-      filled: ['border-primary', 'bg-primary', 'text-background'],
-      bordered: ['border-primary', 'text-primary', 'bg-background'],
+      filled: ['border-secondary', 'bg-secondary', 'text-background'],
+      bordered: ['border-secondary', 'text-secondary', 'bg-background'],
     },
     size: {
       small: ['text-sm', 'py-1', 'px-2'],
@@ -22,12 +22,12 @@ const button = cva(['border', 'rounded-[10rem]', 'transition-colors'], {
     {
       intent: 'filled',
       disabled: false,
-      class: 'hover:bg-background hover:text-primary',
+      class: 'hover:bg-background hover:text-secondary',
     },
     {
       intent: 'bordered',
       disabled: false,
-      class: 'hover:bg-primary hover:text-background',
+      class: 'hover:bg-secondary hover:text-background',
     },
   ],
 });

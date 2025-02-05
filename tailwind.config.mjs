@@ -11,10 +11,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#5938E0',
-        secondary: '#FF5700',
-        tetriary: '#B9EFBB',
-        background: '#FAF4F0',
+        primary: '#343FBD',
+        secondary: '#EE0061',
+        tetriary: '#F4AC08',
+        background: '#FFFAF7',
       },
       fontFamily: {
         primary: ['Garnett', 'sans-serif'],
