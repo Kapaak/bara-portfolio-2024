@@ -3,7 +3,7 @@ import groq from 'groq';
 import { sanityClient } from 'sanity:client';
 
 export async function getAuthorFocuses(): Promise<SanityFocus[]> {
-  const focusesQuery = groq`*[_type == "focus"]{name, description, orderRank}|order(orderRank)`;
+  const focusesQuery = groq`*[_type == "focus"]{name, description,icon{asset->{...,metadata}}, orderRank}|order(orderRank)`;
 
   const focuses: SanityFocus[] = await sanityClient.fetch(focusesQuery);
 
