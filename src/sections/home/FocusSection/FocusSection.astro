@@ -11,14 +11,14 @@ const focuses = await getAuthorFocuses();
 
 <section>
   <MaxWidth removeMobilePadding>
-    <div class="flex flex-col gap-4 md:gap-12">
-      <Headline
+    <div class="flex flex-col gap-4 lg:gap-12">
+      <Headline class="px-[2.1rem] lg:px-0"
         ><DecoratedText intent="needle" position="right"
           >S čím pomůžu</DecoratedText
         ></Headline
       >
       <div
-        class="flex flex-col gap-3.5 bg-primary px-4 py-6 md:flex-row md:gap-[7.7rem] md:rounded-small md:px-16.5 md:py-6"
+        class="flex flex-col gap-3.5 bg-primary px-[2.1rem] py-6 md:flex-row md:gap-[7.7rem] lg:rounded-small lg:px-16.5 lg:py-6"
       >
         {
           focuses?.map(focus => (

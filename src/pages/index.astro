@@ -1,16 +1,16 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import AboutSection from "@sections/home/AboutSection/AboutSection.astro";
-import FocusSection from "@sections/home/FocusSection/FocusSection.astro";
-import HeroSection from "@sections/home/HeroSection.astro";
-import ProjectsSection from "@sections/home/ProjectSection/ProjectsSection.astro";
+import Layout from '@layouts/Layout.astro';
+import AboutSection from '@sections/home/AboutSection/AboutSection.astro';
+import FocusSection from '@sections/home/FocusSection/FocusSection.astro';
+import HeroSection from '@sections/home/HeroSection.astro';
+import ProjectsSection from '@sections/home/ProjectSection/ProjectsSection.astro';
 ---
 
 <Layout>
-  <main class="mb-15 flex flex-col gap-15 lg:mb-20 lg:gap-30">
+  <main class="mb-15 flex flex-col gap-15 lg:mb-20 lg:gap-25">
     <HeroSection />
-    <FocusSection />
     <AboutSection />
+    <FocusSection />
     <ProjectsSection />
   </main>
 </Layout>

@@ -3,13 +3,15 @@ import DecoratedText from '@ui/components/DecoratedText.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
 ---
 
-<section class="background grid h-80 place-items-center">
+<section class="background grid h-80 place-items-center pt-15 lg:pt-25">
   <MaxWidth>
-    <h1 class="text-center font-secondary text-[3.2rem] lg:text-h1">
+    <h1
+      class="max-w-[46rem] text-center font-secondary text-[3.2rem] leading-[4rem] lg:max-w-[60rem] lg:text-h1 lg:leading-[6rem]"
+    >
       <DecoratedText intent="needle">Potřebuješ</DecoratedText> oživit svůj <DecoratedText
         intent="circle">brand?</DecoratedText
       >
-      <DecoratedText>Jsem tu, abych ti s tím pomohla.</DecoratedText>
+      Jsem tu, abych ti <DecoratedText>s tím pomohla.</DecoratedText>
     </h1>
   </MaxWidth>
 </section>
