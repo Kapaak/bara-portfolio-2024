@@ -16,16 +16,24 @@ const { gallery } = Astro.props;
       gallery &&
         gallery?.map(
           galleryItem =>
-            galleryItem?.image && (
-              <Image
+            galleryItem?.image &&
+            (galleryItem?.image?.mimeType === 'image/gif' ? (
+              <img
                 src={urlFor(galleryItem.image).url()}
+                alt={galleryItem.image?.altText ?? ''}
+                width={galleryItem.image?.metadata?.dimensions?.width ?? 0}
+                height={galleryItem.image?.metadata?.dimensions?.height ?? 0}
+              />
+            ) : (
+              <Image
+                src={urlFor(galleryItem.image).format('webp').url()}
                 alt={galleryItem.image?.altText ?? ''}
                 width={galleryItem.image?.metadata?.dimensions?.width ?? 0}
                 height={galleryItem.image?.metadata?.dimensions?.height ?? 0}
                 loading="lazy"
                 decoding="async"
               />
-            )
+            ))
         )
     }
   </div>
