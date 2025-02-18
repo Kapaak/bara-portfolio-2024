@@ -4,7 +4,7 @@ import Headline from '@ui/components/Headline.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
 import { Image } from 'astro:assets';
 
-import aboutImage from '../../../assets/hand-made/about.svg';
+import aboutImage from '../../../assets/hand-made/about.gif';
 ---
 
 <section id="o-mne">
@@ -16,25 +16,35 @@ import aboutImage from '../../../assets/hand-made/about.svg';
           ></Headline
         >
         <div class="flex flex-col gap-4">
-          <p>👋 Ahoj! Jsem Bára Nováková.</p>
-          <p>
-            Jsem grafická designérka s vášní pro originální vizuály. Po práci v
-            marketingové agentuře jsem se rozhodla jít vlastní cestou a tvořit
-            designy, které nejsou jen hezké na pohled, ale mají i duši.
-          </p>
-          <p>
-            Každý projekt je pro mě unikátní výzvou. Kladu důraz na detail,
-            originalitu a funkčnost. Pracuji s klienty individuálně a snažím se
-            pochopit jejich potřeby i vizi. Mým cílem je vytvářet vizuály, které
-            nejen vyniknou na první pohled, ale také dlouhodobě podpoří značku a
-            její rozpoznatelnost.
-          </p>
+          <div>
+            <p>Ahoj, jmenuji se Barbora Nováková! 👋</p>
+            <p>
+              Jsem grafička a ilustrátorka, která dodá vašemu brandu osobitost.
+            </p>
+          </div>
+          <div>
+            <strong class="font-[500]">Co ode mě můžeš čekat?</strong>
+            <p>
+              Každý projekt je pro mě unikátní výzvou. Pracuji s klienty
+              individuálně a snažím se pochopit jejich potřeby i vizi. Mým cílem
+              je vytvářet vizuály, které nejen zaujmou na první pohled, ale také
+              dlouhodobě podpoří značku a její rozpoznatelnost.
+            </p>
+          </div>
+          <div>
+            <p><strong class="font-[500]">A jak to celé probíhá?</strong></p>
+            <p>
+              Nejdřív si pokecáme o tvé vizi, pak se ponořím do tvorby, doladíme
+              detaily a nakonec oslavíme úspěch tvého nového brandu! Tak co,
+              jdeme do toho?
+            </p>
+          </div>
         </div>
       </div>
       <Image
         src={aboutImage}
         alt="about me"
-        class="max-w-80 self-center md:max-w-[30rem]"
+        class="max-w-[30rem] self-center"
         loading="eager"
       />
     </div>
