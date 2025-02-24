@@ -13,8 +13,6 @@ dotenvConfig();
 
 // https://astro.build/config
 export default defineConfig({
-  //TODO: Remove output server and use sanity hooks instead !!
-  output: 'server',
   site: 'https://www.barboranovakova.cz/',
   image: {
     domains: ['cdn.sanity.io'],
