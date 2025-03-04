@@ -13,6 +13,7 @@ dotenvConfig();
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'static',
   site: 'https://www.barboranovakova.cz/',
   image: {
     domains: ['cdn.sanity.io'],
