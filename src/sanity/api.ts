@@ -10,6 +10,14 @@ export async function getAuthorFocuses(): Promise<SanityFocus[]> {
   return focuses;
 }
 
+export async function getAllProjectsSlugs(): Promise<string[]> {
+  const projectsSlugsQuery = groq`*[_type == "project"]{"slug":slug.current}`;
+
+  const projectsSlugs: any[] = await sanityClient.fetch(projectsSlugsQuery);
+
+  return projectsSlugs.map(project => project.slug);
+}
+
 export async function getProjects(): Promise<SanityProject[]> {
   const projectsQuery = groq`*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,
    tags[]-> {

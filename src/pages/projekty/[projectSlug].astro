@@ -1,11 +1,17 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { getProjectDetailBySlug } from '@sanity/api';
+import { getAllProjectsSlugs, getProjectDetailBySlug } from '@sanity/api';
 import GallerySection from '@sections/project-detail/GallerySection.astro';
 import HeroSection from '@sections/project-detail/HeroSection.astro';
 import Headline from '@ui/components/Headline.astro';
 import MaxWidth from '@ui/components/MaxWidth.astro';
 import Tag from '@ui/components/Tag.astro';
+
+export async function getStaticPaths() {
+  const projectsSlugs = await getAllProjectsSlugs();
+
+  return projectsSlugs.map(slug => ({ params: { projectSlug: slug } }));
+}
 
 const { projectSlug } = Astro.params;
 
