@@ -5,14 +5,14 @@ export const navigation = [
   },
   {
     title: 'Kdo jsem?',
-    href: '#o-mne',
+    href: '/#o-mne',
   },
   {
     title: 'Portfolio',
-    href: '#portfolio',
+    href: '/#portfolio',
   },
   {
     title: 'Kontakt',
-    href: '#kontakt',
+    href: '/#kontakt',
   },
 ];
