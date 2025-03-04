@@ -1,7 +1,0 @@
-user-agent: *
-Sitemap: https://barboranovakova.cz/sitemap-index.xml
-Disallow: /api/*
-
-user-agent: Googlebot
-Sitemap: https://barboranovakova.cz/sitemap-index.xml
-Allow: /
