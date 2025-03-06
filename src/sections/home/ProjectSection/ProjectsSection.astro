@@ -60,7 +60,6 @@ const projects = await getProjects();
     const projects = document.querySelectorAll('.project');
 
     let isMobile = isMobileDevice();
-
     let lastWidth = window.innerWidth;
 
     function updateProjectsVisibility() {
@@ -100,20 +99,23 @@ const projects = await getProjects();
       toggleButton.setAttribute('aria-pressed', String(!allProjectsVisible));
     }
 
-    window.addEventListener('resize', () => {
+    function handleResize() {
       const currentWidth = window.innerWidth;
       if (currentWidth !== lastWidth) {
         lastWidth = currentWidth;
         updateProjectsVisibility();
       }
-    });
+    }
+
+    window.addEventListener('resize', handleResize);
     toggleButton?.addEventListener('click', toggleProjects);
 
     updateProjectsVisibility();
 
-    return () => {
-      window.removeEventListener('resize', updateProjectsVisibility);
+    // Cleanup function
+    document.addEventListener('astro:before-swap', () => {
+      window.removeEventListener('resize', handleResize);
       toggleButton?.removeEventListener('click', toggleProjects);
-    };
+    });
   });
 </script>
