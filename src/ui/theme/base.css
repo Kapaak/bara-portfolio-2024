@@ -14,6 +14,27 @@
     cursor: url('/cursor.svg'), auto;
   }
 
+  body::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #343fbd;
+    outline: #343fbd;
+    border-radius: 1rem;
+  }
+
+  @supports (scrollbar-color: #343fbd #fff) {
+    * {
+      scrollbar-color: #343fbd #fff;
+      scrollbar-width: auto;
+    }
+  }
+
   a,
   button {
     cursor: url('/cursor-hover.svg'), auto;
