@@ -11,7 +11,7 @@ export async function getAuthorFocuses(): Promise<SanityFocus[]> {
 }
 
 export async function getAllProjectsSlugs(): Promise<string[]> {
-  const projectsSlugsQuery = groq`*[_type == "project"]{"slug":slug.current}`;
+  const projectsSlugsQuery = groq`*[_type == "project" && visible == true]{"slug":slug.current}`;
 
   const projectsSlugs: any[] = await sanityClient.fetch(projectsSlugsQuery);
 
@@ -19,7 +19,7 @@ export async function getAllProjectsSlugs(): Promise<string[]> {
 }
 
 export async function getProjects(): Promise<SanityProject[]> {
-  const projectsQuery = groq`*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,
+  const projectsQuery = groq`*[_type == "project" && visible == true]{"id":_id,name,description,"slug":slug.current,url,
    tags[]-> {
     name,
     "value":value.current
@@ -27,6 +27,7 @@ export async function getProjects(): Promise<SanityProject[]> {
   image{asset->{...,metadata}},
   tagColor,
   titleColor,
+  visible,
   orderRank,
   }|order(orderRank)`;
 

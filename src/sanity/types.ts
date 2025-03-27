@@ -233,6 +233,7 @@ export type Project = {
   }>;
   tagColor?: 'primary' | 'black' | 'background';
   titleColor?: 'primary' | 'black' | 'background';
+  visible?: boolean;
 };
 
 export type SanityImageCrop = {
@@ -359,8 +360,13 @@ export type FocusesQueryResult = Array<{
   } | null;
   orderRank: string | null;
 }>;
+// Variable: projectsSlugsQuery
+// Query: *[_type == "project" && visible == true]{"slug":slug.current}
+export type ProjectsSlugsQueryResult = Array<{
+  slug: string | null;
+}>;
 // Variable: projectsQuery
-// Query: *[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,   tags[]-> {    name,    "value":value.current  },  image{asset->{...,metadata}},  tagColor,  titleColor,  orderRank,  }|order(orderRank)
+// Query: *[_type == "project" && visible == true]{"id":_id,name,description,"slug":slug.current,url,   tags[]-> {    name,    "value":value.current  },  image{asset->{...,metadata}},  tagColor,  titleColor,  visible,  orderRank,  }|order(orderRank)
 export type ProjectsQueryResult = Array<{
   id: string;
   name: string | null;
@@ -397,6 +403,7 @@ export type ProjectsQueryResult = Array<{
   } | null;
   tagColor: 'background' | 'black' | 'primary' | null;
   titleColor: 'background' | 'black' | 'primary' | null;
+  visible: boolean | null;
   orderRank: string | null;
 }>;
 // Variable: projectDetailQuery
@@ -452,7 +459,8 @@ import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == "focus"]{name, description,icon{asset->{...,metadata}}, orderRank}|order(orderRank)': FocusesQueryResult;
-    '*[_type == "project"]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
+    '*[_type == "project" && visible == true]{"slug":slug.current}': ProjectsSlugsQueryResult;
+    '*[_type == "project" && visible == true]{"id":_id,name,description,"slug":slug.current,url,\n   tags[]-> {\n    name,\n    "value":value.current\n  },\n  image{asset->{...,metadata}},\n  tagColor,\n  titleColor,\n  visible,\n  orderRank,\n  }|order(orderRank)': ProjectsQueryResult;
     '*[_type == "projectDetail" && parentProject->slug.current ==$projectSlug]{"id":_id,\n  gallery[]{"image":asset->{...,metadata}},\n   parentProject-> {\n    _id,\n    name,description,"slug":slug.current,url,\n    year,\n    tags[]-> {\n    _id,\n    name,\n    "value":value.current\n  },\n  },\n   sections,\n  }[0]': ProjectDetailQueryResult;
   }
 }
