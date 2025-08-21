@@ -1,6 +1,6 @@
-# Barbora Nováková - Portfolio
+# Barbora Zapletalová - Portfolio
 
- Website for graphic designer Barbora Nováková. This website consists of
+ Website for graphic designer Barbora Zapletalová. This website consists of
 frontend created in `Astro.js` and headless CMS in `Sanity.io`.
 
 > Repository for the CMS is located
